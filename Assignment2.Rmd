@@ -1,5 +1,5 @@
 ---
-title: "QRM II Graded Assignment (2)"
+title: "QRM II Graded Assignment brrrrrrrrr"
 subtitle: "Period 1, 2026"
 author: "Fill in your group number and names here"
 date:  "`r format(Sys.Date(), '%d-%m-%Y')`"
