@@ -1,5 +1,5 @@
 ---
-title: "QRM II Graded Assignment brrrrrrrrr"
+title: "QRM II Graded Assignment 2"
 subtitle: "Period 1, 2026"
 author: "Group 17: Omar zakkourlashy, Anna Olaru, "
 date:  "`r format(Sys.Date(), '%d-%m-%Y')`"
