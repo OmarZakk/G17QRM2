@@ -137,14 +137,20 @@ Write your formulated response here.
 *Step c*
 
 ```{r}
+boxplot(movies5$profits,
+        main= "Boxplot of movie profits",
+        xlab= "movies5",
+        ylab= "Profits",
+        col= "lightblue")
 
-#WRITE YOUR CODE HERE
+quantile(movies5$profits)
 
 ```
 
+
 **Your Answer:**
 
-Write your formulated response here.
+These quartiles show us that the movie industry is very risky and hit driven as the first quartile is negative, showing important losses. Meanwhile, the jump between the second and third quartile further supports the idea that only a few movies generate revenue for most of the industry. 
 
 *Step d*
 
