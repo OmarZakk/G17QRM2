@@ -67,6 +67,8 @@ movies5<-read.table("movies5.tsv",sep="\t", header=TRUE )
 dim(movies5)
 nrow(movies5)
 ncol(movies5)
+
+##This dataset contains 909 observations under 19 variables, and each observation is linked to a single movie
 ```
 
 **Your Answer:**
@@ -77,7 +79,10 @@ Write your response here.
 2. Which of the following types of variables are present in your data set? (i) nominal; (ii) ordinal; (iii); interval; (iv) ratio. If present, name one example of such a variable present in your data set. \textbf{[4 points]}
 
 ```{r}
-#WRITE YOUR CODE HERE
+summary(movies5)
+
+##Budget: Ratio. Original Language: nominal. revenue: interval. vote average: ordinal
+      
 ```
 
 **Your Answer:**
@@ -100,7 +105,11 @@ For each step, you should provide first all the code you used to answer the ques
 
 ```{r}
 
-#WRITE YOUR CODE HERE
+movies5$profits <- movies5$revenue - movies5$budget
+mean(movies5$profits)
+median(movies5$profits)
+max(movies5$profits)
+min(movies5$profits)
 
 ```
 
@@ -112,7 +121,12 @@ Write your formulated response here.
 
 ```{r}
 
-#WRITE YOUR CODE HERE
+movies5[which.max(movies5$profits), c("title", "profits")]
+movies5[which.min(movies5$profits), c("title", "profits"
+)]
+
+##the data shows that movie 870: the minions is the most profitable with 1.082.730.962 in profits and movie 854: the 13th warrior as least profitable with -98.301.101 in losses
+
 
 ```
 
