@@ -191,11 +191,22 @@ We replace zero and negative profits with NA so they are excluded from the calcu
 
 #WRITE YOUR CODE HERE
 
-```
+```ggplot(movies5, aes(x = runtime, y = vote_average)) +
+  geom_point() +
+  labs(
+    x = "Runtime (minutes)",
+    y = "Average vote",
+    title = "Runtime vs Average Movie Vote"
+  )
+  
 
 **Your Answer:**
 
 Write your formulated response here.
+
+The scatterplot indicates a weak positive correlation between runtime and average rating. It appears that films with a longer runtime tend to get somewhat better scores from viewers. Still, the connection is not particularly strong, since the data points are quite scattered. A possible explanation is that viewers judge a film mostly on elements like the plot, the genre, and the overall quality, instead of just the runtime.
+
+
 
 # Week 2
 
