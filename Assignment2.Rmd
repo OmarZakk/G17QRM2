@@ -199,14 +199,11 @@ ggplot(movies5, aes(x = runtime, y = vote_average)) +
   
 ```
 
-
-Your Answer:**
+Your Answer:\*\*
 
 Write your formulated response here.
 
 The scatterplot indicates a weak positive correlation between runtime and average rating. It appears that films with a longer runtime tend to get somewhat better scores from viewers. Still, the connection is not particularly strong, since the data points are quite scattered. A possible explanation is that viewers judge a film mostly on elements like the plot, the genre, and the overall quality, instead of just the runtime.
-
-
 
 # Week 2
 
@@ -245,7 +242,7 @@ mean(bruce_movies$revenue)
 
 **Your Answer:**
 
-The average revenues of all the movies in the given data is 88.846.315,00. Meanwhile the average revenue of all movies in the list staring Bruce Willis is 228.062.987,00 which lies over the average total mean. 
+The average revenues of all the movies in the given data is 88.846.315,00. Meanwhile the average revenue of all movies in the list staring Bruce Willis is 228.062.987,00 which lies over the average total mean.
 
 *step c*
 
@@ -256,7 +253,7 @@ The average revenues of all the movies in the given data is 88.846.315,00. Meanw
 
 **Your Answer:**
 
-The law of large number states that with a larger population sample, all values converge to a mean. For the Bruce Willis movies, not only do we have some NA values but we also only have 8 observations out of the 909 of the entire data set. If Bruce Willis had more movies in the list, the revenue mean would probably be closer to the average mean of the whole sample. 
+The law of large number states that with a larger population sample, all values converge to a mean. For the Bruce Willis movies, not only do we have some NA values but we also only have 8 observations out of the 909 of the entire data set. If Bruce Willis had more movies in the list, the revenue mean would probably be closer to the average mean of the whole sample.
 
 3 For this question, you will assume that your data set is the full population.
 
@@ -269,13 +266,15 @@ e.  In your opinion, is a sample of 25 movies sufficient to get a reliable estim
 *step a*
 
 ```{r}
-#WRITE YOUR CODE HERE
+movies5$profits <- movies5$revenue - movies5$budget
+movies5$profits <- movies5$profits / 1000000
+mean((movies5$profits - mean(movies5$profits))^2)
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The variance of profits, expressed in millions, is **17,802.62**.
 
 *step b*
 
