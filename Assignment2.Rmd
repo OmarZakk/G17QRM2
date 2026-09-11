@@ -189,9 +189,7 @@ We replace zero and negative profits with NA so they are excluded from the calcu
 
 ```{r}
 
-#WRITE YOUR CODE HERE
-
-```ggplot(movies5, aes(x = runtime, y = vote_average)) +
+ggplot(movies5, aes(x = runtime, y = vote_average)) +
   geom_point() +
   labs(
     x = "Runtime (minutes)",
@@ -199,8 +197,10 @@ We replace zero and negative profits with NA so they are excluded from the calcu
     title = "Runtime vs Average Movie Vote"
   )
   
+```
 
-**Your Answer:**
+
+Your Answer:**
 
 Write your formulated response here.
 
