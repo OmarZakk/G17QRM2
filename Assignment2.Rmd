@@ -256,7 +256,7 @@ The average revenues of all the movies in the given data is 88.846.315,00. Meanw
 
 **Your Answer:**
 
-Write your formulated response here.
+The law of large number states that with a larger population sample, all values converge to a mean. For the Bruce Willis movies, not only do we have some NA values but we also only have 8 observations out of the 909 of the entire data set. If Bruce Willis had more movies in the list, the revenue mean would probably be closer to the average mean of the whole sample. 
 
 3 For this question, you will assume that your data set is the full population.
 
