@@ -257,6 +257,7 @@ The law of large number states that with a larger population sample, all values 
 
 3 For this question, you will assume that your data set is the full population.
 
+
 a.  Recode profits such that it is expressed in millions. What is the variance of the variable profits (in millions) in your data set? \textbf{[2 points]}
 b.  Create a new data set, called movies_sample. Make sure that it is a random sample of your data set of 25 movies. What is the variance of profits in this random sample? How does it compare to the variance of profits in 2a? \textbf{[2 points]}
 c.  In a for loop, create 100 different samples of 25 movies, as in b, and estimate the variance within each sample. Save the variance of each sample in a vector called sample_vars. So the first position of the vector would have the variance of the first sample, the second position the variance of the second sample, etc. Print the start of this vector. \textbf{[2 points]}
@@ -281,17 +282,36 @@ The variance of profits, expressed in millions, is **17,802.62**.
 ```{r}
 #WRITE YOUR CODE HERE
 
+```set.seed(123)
+
+movies_sample <- movies5[sample(1:nrow(movies5), 25), ]
+
+var(movies_sample$profits, na.rm = TRUE)
 ```
 
 **Your Answer:**
 
 Write your formulated response here.
+The variance of profits in the random sample is 20,712.43. This is higher than the variance of profits in the full dataset, which is 17,802.62. This difference is because the sample only contains 25 randomly selected movies.
 
+
+  
 *step c*
 
 ```{r}
 #WRITE YOUR CODE HERE
+sample_vars <- c()
 
+for (i in 1:100) {
+  
+  movies_sample <- movies5[sample(1:nrow(movies5), 25), ]
+  
+  sample_vars[i] <- mean((movies_sample$profits - mean(movies_sample$profits))^2)
+  
+}
+
+head(sample_vars)
+```
 ```
 
 **Your Answer:**
