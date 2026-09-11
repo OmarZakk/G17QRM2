@@ -214,7 +214,7 @@ The scatterplot indicates a weak positive correlation between runtime and averag
 
 **Your Answer:**
 
-Write your formulated response here.
+This is a sample for a larger population. The population would be then all movies of every genres ever created. Here we only have a selectio of movies and their raitings that try to represent a larger population.
 
 2
 
@@ -225,24 +225,27 @@ c.  How trustworthy do you consider your conclusion to answer 2b? Use the term "
 *step a*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
+names(sort(table(movies5$first_actor), decreasing = TRUE))[1]
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+Bruce Willis is the most frequently appearing actor is the movie list.
 
 *step b*
 
 ```{r}
-#WRITE YOUR CODE HERE
+mean(movies5$revenue)
+bruce_movies <- movies5[which(movies5$first_actor == "Bruce Willis"), ]
+mean(bruce_movies$revenue)
+
+
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The average revenues of all the movies in the given data is 88.846.315,00. Meanwhile the average revenue of all movies in the list staring Bruce Willis is 228.062.987,00 which lies over the average total mean. 
 
 *step c*
 
