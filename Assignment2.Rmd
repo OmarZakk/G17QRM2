@@ -157,6 +157,7 @@ These quartiles show us that the movie industry is very risky and hit driven as 
 movies5$logprofits <- log(movies5$profits)
 
 mean(movies5$logprofits)
+NaN.rm<- TRUE
 
 ```
 
@@ -211,7 +212,7 @@ The scatterplot indicates a weak positive correlation between runtime and averag
 
 **Your Answer:**
 
-This is a sample for a larger population. The population would be then all movies of every genres ever created. Here we only have a selectio of movies and their raitings that try to represent a larger population.
+This is a sample for a larger population. The population would be then all movies of every genres ever created. Here we only have a selection of movies and their ratings that try to represent a larger population.
 
 2
 
@@ -242,7 +243,7 @@ mean(bruce_movies$revenue)
 
 **Your Answer:**
 
-The average revenues of all the movies in the given data is 88.846.315,00. Meanwhile the average revenue of all movies in the list staring Bruce Willis is 228.062.987,00 which lies over the average total mean.
+The average revenues of all the movies in the given data is 88.846.315,00. Meanwhile the average revenue of all movies in the list starring Bruce Willis is 228.062.987,00 which lies over the average total mean.
 
 *step c*
 
@@ -253,7 +254,7 @@ The average revenues of all the movies in the given data is 88.846.315,00. Meanw
 
 **Your Answer:**
 
-The law of large number states that with a larger population sample, all values converge to a mean. For the Bruce Willis movies, not only do we have some NA values but we also only have 8 observations out of the 909 of the entire data set. If Bruce Willis had more movies in the list, the revenue mean would probably be closer to the average mean of the whole sample.
+The law of large number states that with a larger population sample, all values converge to a mean. For the Bruce Willis movies, we only have 8 observations out of the 909 of the entire data set. The law of large numbers says a sample average gets closer to the true mean as observations increase so with n=8 we are not close to that point, so we should not trust this specific number, as one blockbuster movie can swing alot from the mean.
 
 3 For this question, you will assume that your data set is the full population.
 
@@ -275,7 +276,7 @@ mean((movies5$profits - mean(movies5$profits))^2)
 
 **Your Answer:**
 
-The variance of profits, expressed in millions, is **17,802.62**.
+The variance of profits, expressed in millions, is 17,802.62.
 
 *step b*
 
@@ -291,7 +292,6 @@ var(movies_sample$profits, na.rm = TRUE)
 
 **Your Answer:**
 
-Write your formulated response here.
 The variance of profits in the random sample is 20,712.43. This is higher than the variance of profits in the full dataset, which is 17,802.62. This difference is because the sample only contains 25 randomly selected movies.
 
 
@@ -299,17 +299,11 @@ The variance of profits in the random sample is 20,712.43. This is higher than t
 *step c*
 
 ```{r}
-#WRITE YOUR CODE HERE
 sample_vars <- c()
-
 for (i in 1:100) {
-  
   movies_sample <- movies5[sample(1:nrow(movies5), 25), ]
-  
-  sample_vars[i] <- mean((movies_sample$profits - mean(movies_sample$profits))^2)
-  
+  sample_vars[i] <- var(movies_sample$profits)
 }
-
 head(sample_vars)
 ```
 ```
@@ -321,9 +315,14 @@ Write your formulated response here.
 *step d*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
+summary(sample_vars)
+sd(sample_vars)
+hist(sample_vars)
 ```
+
+
+
+
 
 **Your Answer:**
 
