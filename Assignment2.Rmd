@@ -594,26 +594,32 @@ b.  Now, assume that the variance of *runtime* amongst thriller movies in your d
 *step a*
 
 ```{r}
-#WRITE YOUR CODE HERE
+thrillers <- subset(movies5, genre == "Thriller")
+n    <- sum(!is.na(thrillers$runtime))       # number of thrillers
+xbar <- mean(thrillers$runtime, na.rm = TRUE) # average runtime
+s    <- sd(thrillers$runtime, na.rm = TRUE)   # spread of runtimes
+t_crit <- qt(0.995, df = n - 1)
+c(xbar - t_crit * s / sqrt(n), xbar + t_crit * s / sqrt(n))
 
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The 99% confidence interval for the mean runtime of thriller movies is [102.69, 109.70] minutes. This means we are 99% confident that the true average runtime of all thriller movies in the population lies between roughly 102.7 and 109.7 minutes.
 
 *step b*
 
 ```{r}
-#WRITE YOUR CODE HERE
+z_crit <- qnorm(0.995)
+c(xbar - z_crit * s / sqrt(n), xbar + z_crit * s / sqrt(n))
 
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+the 99% confidence interval for the mean runtime of thrillers is [102.75, 109.65] minutes which is narrower than the result we got in step a. In a we didn't know the real variance, so we had to estimate it from our sample. There is therefore extra uncertainty, so we use the t-distribution, which gives a bigger critical value and a wider interval. In b we act like we know the real variance, so there's less uncertainty and we can use the normal distribution, which has a smaller critical value.
 
 2
 
@@ -623,26 +629,66 @@ b.  For the validity of your test in 2a, what assumption about the distribution 
 *step a*
 
 ```{r}
-#WRITE YOUR CODE HERE
+runtime <- na.omit(movies5$runtime)
+
+n  <- length(runtime)
+s2 <- var(runtime)          # sample variance
+
+
+chi2 <- (n - 1) * s2 / 500
+
+# Critical values (two-sided, alpha = 0.05)
+lower_crit <- qchisq(0.025, df = n - 1)
+upper_crit <- qchisq(0.975, df = n - 1)
+
+n
+s2
+chi2
+lower_crit
+upper_crit
 
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+1. Hypotheses
+H₀: σ² = 500
+H₁: σ² ≠ 500
+
+2. Test statistic
+χ² = (n − 1) · s² / σ₀², which follows a chi-square distribution with n − 1 degrees of freedom under H₀.
+
+3. Significance level and critical values
+α = 0.05, two-sided test with 908 degrees of freedom. The critical values are 826.39 and 993.40. We reject H₀ if χ² < 826.39 or χ² > 993.40.
+
+4. Calculation
+n = 909, s² = 396.60
+χ² = 908 × 396.60 / 500 = 720.23
+
+5. Conclusion
+Since 720.23 < 826.39, the test statistic falls in the rejection region, so we reject H₀. At the 5% significance level, there is enough evidence that the variance of runtime is not equal to 500. The sample variance is lower, which suggests the true variance is smaller than 500.
 
 *step b*
 
 ```{r}
-#WRITE YOUR CODE HERE
+par(mfrow = c(1, 2))   # two plots side by side
+
+hist(runtime, breaks = 40, main = "Histogram of runtime", xlab = "Runtime (minutes)")
+
+qqnorm(runtime, main = "Normal QQ plot of runtime")
+qqline(runtime, col = "red")
 
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The chi-square test for the variance is only valid if runtime is normally distributed. To check this, we made a histogram and a normal QQ plot of runtime.
+
+The histogram is roughly bell-shaped in the middle, but it is skewed to the right, with a longer tail of very long movies. There are also a few movies with a runtime of 0, which are probably missing values. In the QQ plot, the points follow the line in the middle but move away from it at both ends so long movies lie above the line and the 0-minute movies lie far below it.
+
+We conclude that runtime is not normally distributed, so the assumption behind the test in 2a does not hold. 
 
 3.  There is an argument going on in the movie studio. *Bob* claims that they should make higher-quality movies, as this will bring in more profits. *Chantal* disagrees. She tells Bob that mediocre movies bring in the most profits. You are asked to advise on who is right.
 
