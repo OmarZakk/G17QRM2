@@ -73,20 +73,19 @@ ncol(movies5)
 
 **Your Answer:**
 
-Write your response here.
+The dataset has 909 observations and 19 variables. Each observation is one movie, so a subject is a single movie.
 
 2.  Which of the following types of variables are present in your data set? (i) nominal; (ii) ordinal; (iii); interval; (iv) ratio. If present, name one example of such a variable present in your data set. \textbf{[4 points]}
 
 ```{r}
 summary(movies5)
 
-##Budget: Ratio. Original Language: nominal. revenue: interval. vote average: ordinal
       
 ```
 
 **Your Answer:**
 
-Write your response here.
+The dataset has nominal (e.g. genre), interval (e.g. vote_average), and ratio (e.g. budget, revenue, runtime) variables. No ordinal variable seems to be present.
 
 3.  A movie studio wants to know which types of movies give maximal profit. Perform the following steps to provide the movie studio with an analysis which corresponds to their request:
 
@@ -115,7 +114,7 @@ min(movies5$profits)
 
 **Your Answer:**
 
-Write your formulated response here.
+The mean profit is 56,284,650, the median is 2,942,221, the max is 1,082,730,962, and the min is -98,301,101.
 
 *Step b*
 
@@ -132,7 +131,7 @@ movies5[which.min(movies5$profits), c("title", "profits"
 
 **Your Answer:**
 
-Write your formulated response here.
+The most profitable movie is Minions, with profits of 1,082,730,962. The least profitable is The 13th Warrior, with a loss of 98,301,101.
 
 *Step c*
 
@@ -149,7 +148,7 @@ quantile(movies5$profits)
 
 **Your Answer:**
 
-These quartiles show us that the movie industry is very risky and hit driven as the first quartile is negative, showing important losses. Meanwhile, the jump between the second and third quartile further supports the idea that only a few movies generate revenue for most of the industry.
+These quartiles show us that the movie industry is very risky and hit driven as the first quartile is negative, showing important losses. Meanwhile, the jump between the second and third quartile further supports the idea that only a few movies generate revenue for most of the industry. Q1 = -1,260,859, Q2 = 2,942,221, Q3 = 61,340,801, Q4 = 1,082,730,962
 
 *Step d*
 
@@ -183,12 +182,11 @@ boxplot(movies5$logprofits,
 
 **Your Answer:**
 
-We replace zero and negative profits with NA so they are excluded from the calculation. The log transformation also reduces the influence of extremely high profits, resulting in a more balanced distribution.
+We replace zero and negative profits with NA so they are excluded from the calculation. The log transformation also reduces the influence of extremely high profits, resulting in a more balanced distribution. The mean of log profits is now 17.54.
 
 *Step f*
 
 ```{r}
-install.packages("ggplot2")
 library(ggplot2)
 ggplot(movies5, aes(x = runtime, y = vote_average)) +
   geom_point() +
@@ -200,7 +198,7 @@ ggplot(movies5, aes(x = runtime, y = vote_average)) +
   
 ```
 
-Your Answer:\*\*
+**Your Answer**
 
 Write your formulated response here.
 
@@ -254,7 +252,7 @@ The average revenues of all the movies in the given data is 88.846.315,00. Meanw
 
 **Your Answer:**
 
-The law of large number states that with a larger population sample, all values converge to a mean. For the Bruce Willis movies, we only have 8 observations out of the 909 of the entire data set. The law of large numbers says a sample average gets closer to the true mean as observations increase so with n=8 we are not close to that point, so we should not trust this specific number, as one blockbuster movie can swing alot from the mean.
+With only 8 observations, this average could easily be thrown off by one or two blockbusters like Armageddon. The law of large numbers says the sample mean gets closer to the true mean as sample size grows, so with n=8 we shouldn't put much weight on this number.
 
 3 For this question, you will assume that your data set is the full population.
 
@@ -276,7 +274,7 @@ mean((movies5$profits - mean(movies5$profits))^2)
 
 **Your Answer:**
 
-The variance of profits, expressed in millions, is 17,802.62.
+The variance of profits is 17,802.62.
 
 *step b*
 
@@ -309,264 +307,9 @@ head(sample_vars)
 
 **Your Answer:**
 
-Write your formulated response here.
+The variances range from about 1,800 to 75,000 across the 100 samples, since each sample of 25 picks up a different mix of high and low profit movies.
 
 *step d*
-
-```{r}
-# Week 1
-
-1.  Find the dataset “movies5.tsv” on Canvas. Describe your data set: How many observations does it have. How many variables are there? How many subjects? What consists of a subject? \textbf{[4 points]}
-
-```{r}
-movies5<-read.table("movies5.tsv",sep="\t", header=TRUE )
-dim(movies5)
-nrow(movies5)
-ncol(movies5)
-
-##This dataset contains 909 observations under 19 variables, and each observation is linked to a single movie
-```
-
-**Your Answer:**
-
-Write your response here.
-
-2.  Which of the following types of variables are present in your data set? (i) nominal; (ii) ordinal; (iii); interval; (iv) ratio. If present, name one example of such a variable present in your data set. \textbf{[4 points]}
-
-```{r}
-summary(movies5)
-
-##Budget: Ratio. Original Language: nominal. revenue: interval. vote average: ordinal
-      
-```
-
-**Your Answer:**
-
-Write your response here.
-
-3.  A movie studio wants to know which types of movies give maximal profit. Perform the following steps to provide the movie studio with an analysis which corresponds to their request:
-
-<!-- -->
-
-a.  Create the variable profits as the revenue of a movie minus its budget. Report its mean, median, maximum, and minimum. \textbf{[2 points]}
-b.  Which movie has the highest profits in your data set and how much are these profits. Which movie has the lowest and how much are its profits? If multiple movies have the exact same highest or lowest profits, give only one example. \textbf{[2 points]}
-c.  Create a boxplot of the variable profits. Make sure it has an appropriate title, and appropriate titles and labels for the x- and y-axis. Give Q1, Q2, Q3, and Q4. What does this tell you about the nature of making money in the movies industry? \textbf{[2 points]}
-d.  Add a new variable to your data set the log of profits. When creating this variable, what happens to movies for which profits is zero or negative? What then happens when you calculate the mean of log of profits? \textbf{[2 points]}
-e.  For movies that have a profit of zero or less, replace log of profits with "NA". What is now the mean of log of profits? Create a boxplot for log of profits, again with an appropriate title, x- and y-axis labels. How does it compare to the boxplot you made under c.)? \textbf{[2 points]}
-f.  Create a scatterplot of with the runtime of movies on the x-axis and the average vote of movies on the y-axis. What do you conclude from the scatterplot? Are movies with a longer runtime considered worse or better by the audience, or does the audience not have a preference? Why do you think this is the case? \textbf{[2 points]}
-
-For each step, you should provide first all the code you used to answer the question and then formulate an answer using full sentences.
-
-*Step a*
-
-```{r}
-
-movies5$profits <- movies5$revenue - movies5$budget
-mean(movies5$profits)
-median(movies5$profits)
-max(movies5$profits)
-min(movies5$profits)
-
-```
-
-**Your Answer:**
-
-Write your formulated response here.
-
-*Step b*
-
-```{r}
-
-movies5[which.max(movies5$profits), c("title", "profits")]
-movies5[which.min(movies5$profits), c("title", "profits"
-)]
-
-##the data shows that movie 870: the minions is the most profitable with 1.082.730.962 in profits and movie 854: the 13th warrior as least profitable with -98.301.101 in losses
-
-
-```
-
-**Your Answer:**
-
-Write your formulated response here.
-
-*Step c*
-
-```{r}
-boxplot(movies5$profits,
-        main= "Boxplot of movie profits",
-        xlab= "movies5",
-        ylab= "Profits",
-        col= "lightblue")
-
-quantile(movies5$profits)
-
-```
-
-**Your Answer:**
-
-These quartiles show us that the movie industry is very risky and hit driven as the first quartile is negative, showing important losses. Meanwhile, the jump between the second and third quartile further supports the idea that only a few movies generate revenue for most of the industry.
-
-*Step d*
-
-```{r}
-movies5$logprofits <- log(movies5$profits)
-
-mean(movies5$logprofits)
-
-```
-
-**Your Answer:**
-
-The mean of logprofits is NaN because the dataset contains zero and negative profits. The logarithm of zero results in -Inf, while the logarithm of a negative value results in NaN.
-
-*Step e*
-
-```{r}
-movies5$logprofits[movies5$profits <= 0] <- NA
-
-mean(movies5$logprofits, na.rm = TRUE)
-
-boxplot(movies5$logprofits,
-        
-        main = "Boxplot of Log Movie Profits",
-        
-        xlab = "Movies",
-        
-        ylab = "Log of Profits")
-
-```
-
-**Your Answer:**
-
-We replace zero and negative profits with NA so they are excluded from the calculation. The log transformation also reduces the influence of extremely high profits, resulting in a more balanced distribution.
-
-*Step f*
-
-```{r}
-install.packages("ggplot2")
-library(ggplot2)
-ggplot(movies5, aes(x = runtime, y = vote_average)) +
-  geom_point() +
-  labs(
-    x = "Runtime (minutes)",
-    y = "Average vote",
-    title = "Runtime vs Average Movie Vote"
-  )
-  
-```
-
-Your Answer:\*\*
-
-Write your formulated response here.
-
-The scatterplot indicates a weak positive correlation between runtime and average rating. It appears that films with a longer runtime tend to get somewhat better scores from viewers. Still, the connection is not particularly strong, since the data points are quite scattered. A possible explanation is that viewers judge a film mostly on elements like the plot, the genre, and the overall quality, instead of just the runtime.
-
-# Week 2
-
-1 Is your dataset movies5.tsv the full population, or is it a sample of a larger population? If the latter, how would you describe the full population? \textbf{[4 points]}
-
-**Your Answer:**
-
-This is a sample for a larger population. The population would be then all movies from 1990 to 2016 accross all 19 languages. Here we only have a selection of movies and their ratings that try to represent a larger population.
-
-2
-
-a.  For which actor in your data set do you observe the most movies? \textbf{[2 points]}
-b.  What is the average revenue of the movie in which this actor plays and does the revenue lie above or below the revenue of an average movie according to your data set? \textbf{[2 points]}\
-c.  How trustworthy do you consider your conclusion to answer 2b? Use the term "law of large numbers" in your explanation. \textbf{[2 points]}
-
-*step a*
-
-```{r}
-names(sort(table(movies5$first_actor), decreasing = TRUE))[1] 
-```
-
-**Your Answer:**
-
-Bruce Willis is the most frequently appearing actor is the movie list.  
-
-*step b*
-
-```{r}
-mean(movies5$revenue)
-bruce_movies <- movies5[which(movies5$first_actor == "Bruce Willis"), ]
-mean(bruce_movies$revenue)
-
-
-
-```
-
-**Your Answer:**
-
-The average revenues of all the movies in the given data is 88.846.315,00. Meanwhile the average revenue of all movies in the list starring Bruce Willis is 228.062.987,00 which lies over the average total mean.
-
-*step c*
-
-```{r}
-#WRITE YOUR CODE HERE
-
-```
-
-**Your Answer:**
-
-The law of large number states that with a larger population sample, all values converge to a mean. For the Bruce Willis movies, we only have 8 observations out of the 909 of the entire data set. The law of large numbers says a sample average gets closer to the true mean as observations increase so with n=8 we are not close to that point, so we should not trust this specific number, as one blockbuster movie can swing alot from the mean.
-
-3 For this question, you will assume that your data set is the full population.
-
-
-a.  Recode profits such that it is expressed in millions. What is the variance of the variable profits (in millions) in your data set? \textbf{[2 points]}
-b.  Create a new data set, called movies_sample. Make sure that it is a random sample of your data set of 25 movies. What is the variance of profits in this random sample? How does it compare to the variance of profits in 2a? \textbf{[2 points]}
-c.  In a for loop, create 100 different samples of 25 movies, as in b, and estimate the variance within each sample. Save the variance of each sample in a vector called sample_vars. So the first position of the vector would have the variance of the first sample, the second position the variance of the second sample, etc. Print the start of this vector. \textbf{[2 points]}
-d.  Summarize and make a histogram of sample_vars. What is the mean, standard deviation and shape of its distribution? \textbf{[2 points]}
-e.  In your opinion, is a sample of 25 movies sufficient to get a reliable estimate of the population variance of profits, using the sample variance? Explain? \textbf{[2 points]}
-
-*step a*
-
-```{r}
-movies5$profits <- movies5$revenue - movies5$budget
-movies5$profits <- movies5$profits / 1000000
-mean((movies5$profits - mean(movies5$profits))^2)
-
-```
-
-**Your Answer:**
-
-The variance of profits, expressed in millions, is 17,802.62.
-
-*step b*
-
-```{r}
-
-set.seed(123)
-movies_sample <- movies5[sample(1:nrow(movies5), 25), ]
-var(movies_sample$profits, na.rm = TRUE)
-```
-
-**Your Answer:**
-
-The variance of profits in the random sample is 20,712.43. This is higher than the variance of profits in the full dataset, which is 17,802.62. This difference is because the sample only contains 25 randomly selected movies.
-
-
-  
-*step c*
-
-```{r}
-movies5$profits <- (movies5$revenue - movies5$budget) / 1000000
-
-sample_vars <- c()
-for (i in 1:100) {
-  movies_sample <- movies5[sample(1:nrow(movies5), 25), ]
-  sample_vars[i] <- var(movies_sample$profits)
-}
-head(sample_vars)
-```
-
-**Your Answer:**
-
-The 100 sample variances vary widely from sample to sample because each random sample of 25 catches a random mix of high- and low-profit movies.
-*step d*
-
 ```{r}
 summary(sample_vars)
 sd(sample_vars)
@@ -575,12 +318,16 @@ hist(sample_vars,
      xlab = "Sample Variance")
 ```
 **Your Answer:**
+The 100 sample variances have a mean of about 17000 and a standard deviation of about 15400. The distribution is right skewed and the mean is above the median because some samples contain high profit movies which create large variance.
 
-The 100 sample variances have a mean of about 17000 and a standard deviation of about 15400. The distribution is  skewed and the mean is above the median, as some samples contain high-profit block buster movies which create large variance. 
 *step e*
 
-Not very accurate. Standard deviation differs greatly between samples and is nearly as large as the mean which means that each sample has a huge range.
+```{r}
 
+```
+
+**Your Answer:**
+Not very reliable because the standard deviation of the sample variances is nearly as large as the mean so a sample of 25 can give a very different estimate from the true population variance.
 
 # Week 3
 
@@ -611,15 +358,15 @@ The 99% confidence interval for the mean runtime of thriller movies is [102.69, 
 *step b*
 
 ```{r}
+pop_sd <- sd(movies5$runtime, na.rm = TRUE)
 z_crit <- qnorm(0.995)
-c(xbar - z_crit * s / sqrt(n), xbar + z_crit * s / sqrt(n))
-
+c(xbar - z_crit * pop_sd / sqrt(n), xbar + z_crit * pop_sd / sqrt(n))
 
 ```
 
 **Your Answer:**
 
-the 99% confidence interval for the mean runtime of thrillers is [102.75, 109.65] minutes which is narrower than the result we got in step a. In a we didn't know the real variance, so we had to estimate it from our sample. There is therefore extra uncertainty, so we use the t-distribution, which gives a bigger critical value and a wider interval. In b we act like we know the real variance, so there's less uncertainty and we can use the normal distribution, which has a smaller critical value.
+The 99% CI is [101.64, 110.75], which is wider than in 1a, not narrower. The population sd of runtime (19.91) is bigger than the thriller-only sd (15.10) used in 1a, and that outweighs the smaller z critical value.
 
 2
 
@@ -813,13 +560,23 @@ Write your formulated response here.
 *step f*
 
 ```{r}
-#WRITE YOUR CODE HERE
+movies5$profits <- movies5$revenue - movies5$budget
+movies5$logprofits <- log(movies5$profits)
+movies5$logprofits[movies5$profits <= 0] <- NA
+movies5$logbudget <- log(movies5$budget)
+movies5$logbudget[movies5$budget <= 0] <- NA
+mod_log <- lm(logprofits ~ logbudget, data = movies5)
+common <- !is.na(movies5$logprofits) & !is.na(movies5$logbudget)
+level_common <- lm(profits ~ budget, data = movies5[common,])
+summary(level_common)$r.squared
 
+backtransformed <- exp(predict(mod_log))
+cor(movies5$profits[common], backtransformed)^2
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+R^2 isn't directly comparable since the two models have different dependent variables. Putting both on the same scale, level-level gets 0.329 and log-log gets 0.312, so level-level fits slightly better.
 
 *step g*
 
@@ -863,13 +620,13 @@ Write your formulated response here.
 *step c*
 
 ```{r}
-#WRITE YOUR CODE HERE
+unique(movies5[, c("first_actor","first_actor_gender")])
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+Yes, for example Jackie Chan and Morgan Freeman are labeled female, and Cameron Diaz is labeled male. This random mislabeling would bias the coefficient from 2b toward zero, since some movies end up in the wrong group.
 
 # Week 5
 
@@ -923,13 +680,16 @@ Write your formulated response here.
 *step d*
 
 ```{r}
-#WRITE YOUR CODE HERE
+movies5$english <- ifelse(movies5$original_language == "en", 1, 0)
+mod_flex <- lm(logprofits ~ logbudget + english + release_month + I(release_month^2), data = movies5)
+mod_nomonth <- lm(logprofits ~ logbudget + english, data = movies5)
+anova(mod_nomonth, mod_flex)
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+Profits vary a lot by month in the plot from a) (June averages 123m, September only $17m), so a straight line might not fit well. Testing month and month^2 jointly gives F = 1.04, p = 0.356, so month has no significant effect once budget and language are in the model.
 
 *step e*
 
@@ -940,11 +700,18 @@ Write your formulated response here.
 
 **Your Answer:**
 
-Write your formulated response here.
+Based on the model in (d), I wouldnt advise selecting a specific release month. once budget and language are accounted for, timing shows no real effect on profits. The pattern that summer and November releases look most profitable could mostly be because studios have already scheduled their biggest most expensive English-language films for those periods. 
 
 *step f*
 
 ```{r}
-#WRITE YOUR CODE HERE
+thrillers <- subset(movies5, genre == "Thriller")
+thrillers <- thrillers[thrillers$revenue > 0, ]
+mod_thriller <- lm(log(revenue) ~ logbudget + english, data = thrillers)
+
+newmovie <- data.frame(logbudget = log(40000000), english = 1)
+predict(mod_thriller, newdata = newmovie, interval = "prediction", level = 0.99)
+exp(predict(mod_thriller, newdata = newmovie, interval = "prediction", level = 0.99))
 
 ```
+The predicted revenue is about 71.5 million, with a 99% prediction interval of roughly 520,000 to 9.8 billion. The interval is extremely wide because theres a lot of variation in movie revenue than just budget and language.
