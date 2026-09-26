@@ -476,6 +476,7 @@ mean_profits[which.max(mean_profits$profits), ]
 **Your Answer:**
 
 Write your formulated response here.
+Movies that have a rating of 7 tend to achieve the highest average profits, amounting to 107.59 million in earnings
 
 *step c*
 
@@ -518,6 +519,9 @@ arrows(year_profits$release_year,
 Write your formulated response here.
 
 *step d*
+Based on the findings, the studio should not focus exclusively on producing films of the highest possible quality. Films with a rating of 7 yield the highest average profits, at approximately 107.59 million. This indicates that movies rated highly, though not at the maximum level, can be considerably profitable. Nevertheless, the confidence intervals reveal substantial uncertainty in average profits across the years examined. Consequently, neither Bob nor Chantal can be regarded as entirely correct. The studio should therefore strive to produce films of good quality, while simultaneously accounting for other factors that affect profitability.
+
+
 
 **Your Answer:**
 
