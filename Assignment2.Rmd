@@ -226,7 +226,7 @@ names(sort(table(movies5$first_actor), decreasing = TRUE))[1]
 
 **Your Answer:**
 
-Bruce Willis is the most frequently appearing actor is the movie list.  
+Bruce Willis is the most frequently appearing actor is the movie list.
 
 *step b*
 
@@ -255,7 +255,6 @@ The average revenues of all the movies in the given data is 88.846.315,00. Meanw
 With only 8 observations, this average could easily be thrown off by one or two blockbusters like Armageddon. The law of large numbers says the sample mean gets closer to the true mean as sample size grows, so with n=8 we shouldn't put much weight on this number.
 
 3 For this question, you will assume that your data set is the full population.
-
 
 a.  Recode profits such that it is expressed in millions. What is the variance of the variable profits (in millions) in your data set? \textbf{[2 points]}
 b.  Create a new data set, called movies_sample. Make sure that it is a random sample of your data set of 25 movies. What is the variance of profits in this random sample? How does it compare to the variance of profits in 2a? \textbf{[2 points]}
@@ -290,8 +289,6 @@ var(movies_sample$profits, na.rm = TRUE)
 
 The variance of profits in the random sample is 20,712.43. This is higher than the variance of profits in the full dataset, which is 17,802.62. This difference is because the sample only contains 25 randomly selected movies.
 
-
-  
 *step c*
 
 ```{r}
@@ -310,6 +307,7 @@ head(sample_vars)
 The variances range from about 1,800 to 75,000 across the 100 samples, since each sample of 25 picks up a different mix of high and low profit movies.
 
 *step d*
+
 ```{r}
 summary(sample_vars)
 sd(sample_vars)
@@ -317,8 +315,8 @@ hist(sample_vars,
      main = "Histogram of Sample Variances",
      xlab = "Sample Variance")
 ```
-**Your Answer:**
-The 100 sample variances have a mean of about 17000 and a standard deviation of about 15400. The distribution is right skewed and the mean is above the median because some samples contain high profit movies which create large variance.
+
+**Your Answer:** The 100 sample variances have a mean of about 17000 and a standard deviation of about 15400. The distribution is right skewed and the mean is above the median because some samples contain high profit movies which create large variance.
 
 *step e*
 
@@ -326,8 +324,7 @@ The 100 sample variances have a mean of about 17000 and a standard deviation of 
 
 ```
 
-**Your Answer:**
-Not very reliable because the standard deviation of the sample variances is nearly as large as the mean so a sample of 25 can give a very different estimate from the true population variance.
+**Your Answer:** Not very reliable because the standard deviation of the sample variances is nearly as large as the mean so a sample of 25 can give a very different estimate from the true population variance.
 
 # Week 3
 
@@ -399,22 +396,15 @@ upper_crit
 
 **Your Answer:**
 
-1. Hypotheses
-H₀: σ² = 500
-H₁: σ² ≠ 500
+1.  Hypotheses H₀: σ² = 500 H₁: σ² ≠ 500
 
-2. Test statistic
-χ² = (n − 1) · s² / σ₀², which follows a chi-square distribution with n − 1 degrees of freedom under H₀.
+2.  Test statistic χ² = (n − 1) · s² / σ₀², which follows a chi-square distribution with n − 1 degrees of freedom under H₀.
 
-3. Significance level and critical values
-α = 0.05, two-sided test with 908 degrees of freedom. The critical values are 826.39 and 993.40. We reject H₀ if χ² < 826.39 or χ² > 993.40.
+3.  Significance level and critical values α = 0.05, two-sided test with 908 degrees of freedom. The critical values are 826.39 and 993.40. We reject H₀ if χ² \< 826.39 or χ² \> 993.40.
 
-4. Calculation
-n = 909, s² = 396.60
-χ² = 908 × 396.60 / 500 = 720.23
+4.  Calculation n = 909, s² = 396.60 χ² = 908 × 396.60 / 500 = 720.23
 
-5. Conclusion
-Since 720.23 < 826.39, the test statistic falls in the rejection region, so we reject H₀. At the 5% significance level, there is enough evidence that the variance of runtime is not equal to 500. The sample variance is lower, which suggests the true variance is smaller than 500.
+5.  Conclusion Since 720.23 \< 826.39, the test statistic falls in the rejection region, so we reject H₀. At the 5% significance level, there is enough evidence that the variance of runtime is not equal to 500. The sample variance is lower, which suggests the true variance is smaller than 500.
 
 *step b*
 
@@ -435,7 +425,7 @@ The chi-square test for the variance is only valid if runtime is normally distri
 
 The histogram is roughly bell-shaped in the middle, but it is skewed to the right, with a longer tail of very long movies. There are also a few movies with a runtime of 0, which are probably missing values. In the QQ plot, the points follow the line in the middle but move away from it at both ends so long movies lie above the line and the 0-minute movies lie far below it.
 
-We conclude that runtime is not normally distributed, so the assumption behind the test in 2a does not hold. 
+We conclude that runtime is not normally distributed, so the assumption behind the test in 2a does not hold.
 
 3.  There is an argument going on in the movie studio. *Bob* claims that they should make higher-quality movies, as this will bring in more profits. *Chantal* disagrees. She tells Bob that mediocre movies bring in the most profits. You are asked to advise on who is right.
 
@@ -583,24 +573,38 @@ Write your formulated response here.
 *step d*
 
 ```{r}
-#WRITE YOUR CODE HERE
+movies5$logprofits <- log(movies5$profits)
+
+movies5$logprofits[movies5$profits <= 0] <- NA
+
+movies5$logbudget <- log(movies5$budget)
+
+movies5$logbudget[movies5$budget <= 0] <- NA
+
+mod_log <- lm(logprofits ~ logbudget, data = movies5)
+
+summary(mod_log)
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The estimated model is:
+
+Log Profitsᵢ = β₀ + β₁ Log Budgetᵢ + εᵢ
+
+The estimated coefficient for Log Budget is approximately 0.587. The R² is approximately 0.271.
 
 *step e*
 
 ```{r}
-#WRITE YOUR CODE HERE
+summary(mod_log)
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The estimated value of β₁ is 0.587. Since this is a log-log model, a 1% increase in budget is associated with approximately a 0.59% increase in profits, on average.
 
 *step f*
 
@@ -621,18 +625,23 @@ cor(movies5$profits[common], backtransformed)^2
 
 **Your Answer:**
 
-R^2 isn't directly comparable since the two models have different dependent variables. Putting both on the same scale, level-level gets 0.329 and log-log gets 0.312, so level-level fits slightly better.
+R\^2 isn't directly comparable since the two models have different dependent variables. Putting both on the same scale, level-level gets 0.329 and log-log gets 0.312, so level-level fits slightly better.
 
 *step g*
 
 ```{r}
-#WRITE YOUR CODE HERE
+t_value <- summary(mod_log)$coefficients["logbudget", "t value"]
+df <- df.residual(mod_log)
+
+p_value <- pt(t_value, df = df, lower.tail = TRUE)
+
+p_value
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The p-value is approximately 1.000. Therefore, we do not reject the null hypothesis that β₁ ≥ 0. There is no evidence that the relationship between budget and profits is negative.
 
 2
 
@@ -692,35 +701,56 @@ f.  Estimate a model that is able to predict the revenue of this movie. Give its
 *step a*
 
 ```{r}
-#WRITE YOUR CODE HERE
+movies5$profits <- movies5$revenue - movies5$budget
+
+month_means <- aggregate(profits ~ release_month,
+                         data = movies5,
+                         FUN = mean,
+                         na.rm = TRUE)
+
+plot(month_means$release_month,
+     month_means$profits,
+     type = "b",
+     xlab = "Month of release",
+     ylab = "Mean profits",
+     main = "Mean profits by month of release")
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The plot shows that average profits vary across the months. June and November have relatively high average profits, while September has relatively low average profits. This suggests that the month of release may matter for movie profits.
 
 *step b*
 
 ```{r}
-#WRITE YOUR CODE HERE
+movies5$english <- ifelse(movies5$original_language == "en", 1, 0)
+
+mod_month <- lm(logprofits ~ logbudget + english + release_month,
+                data = movies5)
+
+summary(mod_month)
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The coefficient for Log Budget is approximately 0.577. This means that a 1% increase in budget is associated with approximately a 0.58% increase in profits, holding the other variables constant.
+
+The coefficient for English is approximately 0.721. This means that English-language movies have approximately 106% higher profits than non-English movies, holding budget and release month constant.
+
+The coefficient for Release Month is approximately 0.021. This means that moving one month later is associated with approximately a 2.1% increase in profits, holding budget and language constant.
 
 *step c*
 
 ```{r}
-#WRITE YOUR CODE HERE
+summary(mod_month)
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The p-value for the release month coefficient is approximately 0.252. Since this is greater than 0.05, we do not reject the null hypothesis that the coefficient of release month is zero. Therefore, there is no statistically significant evidence that release month has a linear effect on profits.
 
 *step d*
 
@@ -734,7 +764,7 @@ anova(mod_nomonth, mod_flex)
 
 **Your Answer:**
 
-Profits vary a lot by month in the plot from a) (June averages 123m, September only $17m), so a straight line might not fit well. Testing month and month^2 jointly gives F = 1.04, p = 0.356, so month has no significant effect once budget and language are in the model.
+Profits vary a lot by month in the plot from a) (June averages 123m, September only \$17m), so a straight line might not fit well. Testing month and month\^2 jointly gives F = 1.04, p = 0.356, so month has no significant effect once budget and language are in the model.
 
 *step e*
 
@@ -745,7 +775,7 @@ Profits vary a lot by month in the plot from a) (June averages 123m, September o
 
 **Your Answer:**
 
-Based on the model in (d), I wouldnt advise selecting a specific release month. once budget and language are accounted for, timing shows no real effect on profits. The pattern that summer and November releases look most profitable could mostly be because studios have already scheduled their biggest most expensive English-language films for those periods. 
+Based on the model in (d), I wouldnt advise selecting a specific release month. once budget and language are accounted for, timing shows no real effect on profits. The pattern that summer and November releases look most profitable could mostly be because studios have already scheduled their biggest most expensive English-language films for those periods.
 
 *step f*
 
@@ -759,4 +789,5 @@ predict(mod_thriller, newdata = newmovie, interval = "prediction", level = 0.99)
 exp(predict(mod_thriller, newdata = newmovie, interval = "prediction", level = 0.99))
 
 ```
+
 The predicted revenue is about 71.5 million, with a 99% prediction interval of roughly 520,000 to 9.8 billion. The interval is extremely wide because theres a lot of variation in movie revenue than just budget and language.
