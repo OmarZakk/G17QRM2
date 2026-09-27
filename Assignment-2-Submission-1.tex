@@ -182,15 +182,16 @@ your way is as follows:
 \end{itemize}
 
 The use of generative AI is \textbf{not} permitted and may result in a
-grade of 0. See the AI protocol in the course manual for details. To
-answer the assignment, you can simply fill out this R markdown document.
-There are designated places which you can fill with R code. There are
-also designated spaces for you to answer each question. Often, the
-structure of an answer will be as follows. First, you type the R code in
-the designated box. This will show how you analyzed the data to get the
-answer to the question. Below the box for the R code, you will then
-summarize your answer to the question, i.e.~what are the conclusions
-that you draw from the data analysis?
+grade of 0. See the AI protocol in the course manual for details.
+
+To answer the assignment, you can simply fill out this R markdown
+document. There are designated places which you can fill with R code.
+There are also designated spaces for you to answer each question. Often,
+the structure of an answer will be as follows. First, you type the R
+code in the designated box. This will show how you analyzed the data to
+get the answer to the question. Below the box for the R code, you will
+then summarize your answer to the question, i.e.~what are the
+conclusions that you draw from the data analysis?
 
 When handing in, you are supposed to submit this .Rmd file, and a
 knitted version of this document. You can knit this document to pdf,
@@ -578,11 +579,11 @@ mean of log profits is now 17.54.
 
 \textbf{Your Answer}
 
-The scatterplot shows a weak positive relationship between runtime and
-average vote, so longer movies get slightly better ratings. The points
-are very spread out, so the audience doesn't have a strong preference.
-This is probably because people rate a movie more on the story and genre
-than on its length.
+The scatterplot shows a weak positive relationship between running time
+and average vote, so longer movies get better ratings. The points are
+very spread out, so the audience doesnt have a strong preference. Likely
+because people rate a movie more on the story and genre than just
+duration.
 
 \section{Week 2}\label{week-2}
 
@@ -593,8 +594,8 @@ population? \textbf{[4 points]}
 \textbf{Your Answer:}
 
 This is a sample of a larger population. The population would be all
-movies from 1990 to 2016 across all 19 languages. Here we only have a
-selection of movies and their ratings that try to represent a larger
+movies from 1990 to 2016 in the mentioned 19 languages. Here we only
+have a selection of movies and their ratings that should reflect the
 population.
 
 2
@@ -664,10 +665,10 @@ total mean.
 
 \textbf{Your Answer:}
 
-With only 8 observations, this average could easily be thrown off by one
-or two blockbusters like Armageddon. The law of large numbers says the
-sample mean gets closer to the true mean as sample size grows, so with
-n=8 we shouldn't put much weight on this number.
+Average is only 8 observations so its easily skewed by 1 or 2
+blockbusters like Armageddon. The law of large numbers states that the
+sample mean converges to the true mean as the sample size grows, so we
+shouldnt put too much emphasis on this number with n=8.
 
 3 For this question, you will assume that your data set is the full
 population.
@@ -762,9 +763,9 @@ randomly selected movies.
 
 \textbf{Your Answer:}
 
-The variances range from about 1,800 to 75,000 across the 100 samples,
-since each sample of 25 picks up a different mix of high and low profit
-movies.
+The variances range from about 1,800 to 75,000 across the 100 samples
+because each sample of 25 picks up a different mix of high and low
+profit movies.
 
 \emph{step d}
 
@@ -800,15 +801,15 @@ movies.
 \pandocbounded{\includegraphics[keepaspectratio]{Assignment-2-Submission-1_files/Assignment-2-Submission-1_files/figure-latex/unnamed-chunk-14-1.pdf}}
 
 \textbf{Your Answer:} The 100 sample variances have a mean of about
-17000 and a standard deviation of about 15400. The distribution is right
-skewed and the mean is above the median because some samples contain
-high profit movies which create large variance.
+17000 and a sd of about 15400. The distribution is right skewed and the
+mean is higher than the median because some samples have higher profit
+movies which cause larger variance.
 
 \emph{step e}
 
-\textbf{Your Answer:} Not very reliable because the standard deviation
-of the sample variances is nearly as large as the mean so a sample of 25
-can give a very different estimate from the true population variance.
+\textbf{Your Answer:} Not reliable because the sd of the sample
+variances is nearly as large as the mean so a sample of 25 can give a
+very different results from the actual population variance.
 
 \section{Week 3}\label{week-3}
 
@@ -856,7 +857,7 @@ frame are a random sample of a larger population of movies.
 
 The 99\% confidence interval for the mean runtime of thriller movies is
 {[}102.69, 109.70{]} minutes. This means we are 99\% confident that the
-true average runtime of all thriller movies in the population lies
+real average runtime of all thriller movies in the population lies
 between roughly 102.7 and 109.7 minutes.
 
 \emph{step b}
@@ -1009,7 +1010,7 @@ critical value.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{))   }\CommentTok{\# two plots side by side}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{))}
 
 \FunctionTok{hist}\NormalTok{(runtime, }\AttributeTok{breaks =} \DecValTok{40}\NormalTok{, }\AttributeTok{main =} \StringTok{"Histogram of runtime"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Runtime (minutes)"}\NormalTok{)}
 
