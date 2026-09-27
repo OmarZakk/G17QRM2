@@ -24,38 +24,38 @@ format:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, fig.height = 2.8)
 ```
 
 # Introduction
 
 This assignment is to be completed in groups of 4-5. Further, all students in your group need to be assigned to the same R tutorial group (Friday's tutorial). You can sign yourself up for a group on Canvas. Please do so \textbf{before the start of your first R tutorial on Friday September 4th.} You can use the Discussion Board in Canvas if you do not have a group yet or if your group is incomplete.
 
-The assignment has 5 parts, and each part corresponds to the course material of that week (with the exclusion of week 6, for which there is no R programming material).
+The assignment has 5 parts, and each part corresponds to the course material of that week (with the exclusion of week 6, for which there is no R programming material). 
 
 You are supposed to hand in these assignments on Canvas at the following dates:
 
-- **Deadline 1** *Sunday September 27th, at 23:59pm*: you are supposed to hand in weeks 1, 2, and 3 of this assignment. This will determine 18% of your overall course grade
-- **Deadline 2** *Sunday October 11th, at 23:59pm*: you are supposed to hand in weeks 4, and 5 of this assignment. This will determine 12% of your overall course grade
+  - **Deadline 1** *Sunday September 27th, at 23:59pm*: you are supposed to hand in weeks 1, 2, and 3 of this assignment.   This will determine 18\% of your overall course grade
+  - **Deadline 2** *Sunday October 11th, at 23:59pm*: you are supposed to hand in weeks 4, and 5 of this assignment. This will determine 12\% of your overall course grade
 
 The R tutorials (each Friday) will consist of two halves. During the first half, you will discuss the tutorial exercises. These can be downloaded separately from Canvas. During the second half, you can work on this graded assignment within your own group. The purpose is that you find out how to work with R for doing statistical analyses by yourself. The tutorial exercises are meant to teach you basic commands to get you started, but to answer the problem sets in this assignment, you might need to research your own solutions, and use functions and commands not described in the tutorial exercises. Learning how to solve your own research problems is integral part of learning R. When you and your group get stuck on how to approach an exercise, the hierarchy in finding your way is as follows:
 
-- use the concepts from the tutorial exercises;
+-	use the concepts from the tutorial exercises;
 - use the cheat sheets available on Canvas;
-- use Google, YouTube, StackOverflow, or another website;
+-	use Google, YouTube, StackOverflow, or another website;
 - ask the teacher.
 
+The use of generative AI is \textbf{not} permitted and may result in a grade of 0. See the AI protocol in the course manual for details.
 
+To answer the assignment, you can simply fill out this R markdown document. There are designated places which you can fill with R code. There are also designated spaces for you to answer each question. Often, the structure of an answer will be as follows. First, you type the R code in the designated box. This will show how you analyzed the data to get the answer to the question. Below the box for the R code, you will then summarize your answer to the question, i.e. what are the conclusions that you draw from the data analysis? 
 
-To answer the assignment, you can simply fill out this R markdown document. There are designated places which you can fill with R code. There are also designated spaces for you to answer each question. Often, the structure of an answer will be as follows. First, you type the R code in the designated box. This will show how you analyzed the data to get the answer to the question. Below the box for the R code, you will then summarize your answer to the question, i.e. what are the conclusions that you draw from the data analysis?
-
-When handing in, you are supposed to submit this .Rmd file, and a knitted version of this document. You can knit this document to pdf, word, or html. Knitting to pdf requires you to have a .tex distribution installed on your computer. Knitting to Word requires you to have Word installed.
+When handing in, you are supposed to submit this .Rmd file, and a knitted version of this document. You can knit this document to pdf, word, or html. Knitting to pdf requires you to have a .tex distribution installed on your computer. Knitting to Word requires you to have Word installed. 
 
 The exercises are designed such that you should be able to finish the majority of them during the tutorial each week. If you are not able to finish them fully during that time, you are expected to work on it in your own time using the computers on campus or your own device. It is best to meet as a group in-person when working together. If you want to work remotely, github is a good platform to guarantee smooth collaboration. Alternatively, you can email this .Rmd file back and forth to one another as a group, but this is not recommended as it is more cumbersome.
 
 We encourage you to keep your code blocks, printing statements, and final answers, as short as possible. In any case, there is a page limit of 6 pages per week, which encompasses the total length of this document which consists of the questions, your coding lines, and your answers. When your answers to questions of the respective week exceed this page limit, they will not be graded, resulting in zero points.
 
-Each week consists of 1, 2, or 3 subquestions. The total amount of points you can earn per week is 20 points.
+Each week consists of 1, 2, or 3 subquestions. The total amount of points you can earn per week is 20 points. 
 
 # Week 1
 
@@ -66,8 +66,6 @@ movies5<-read.table("movies5.tsv",sep="\t", header=TRUE )
 dim(movies5)
 nrow(movies5)
 ncol(movies5)
-
-##This dataset contains 909 observations under 19 variables, and each observation is linked to a single movie
 ```
 
 **Your Answer:**
@@ -122,10 +120,6 @@ The mean profit is 56,284,650, the median is 2,942,221, the max is 1,082,730,962
 movies5[which.max(movies5$profits), c("title", "profits")]
 movies5[which.min(movies5$profits), c("title", "profits"
 )]
-
-##the data shows that movie 870: the minions is the most profitable with 1.082.730.962 in profits and movie 854: the 13th warrior as least profitable with -98.301.101 in losses
-
-
 ```
 
 **Your Answer:**
@@ -198,10 +192,7 @@ ggplot(movies5, aes(x = runtime, y = vote_average)) +
 ```
 
 **Your Answer**
-
-Write your formulated response here.
-
-The scatterplot indicates a weak positive correlation between runtime and average rating. It appears that films with a longer runtime tend to get somewhat better scores from viewers. Still, the connection is not particularly strong, since the data points are quite scattered. A possible explanation is that viewers judge a film mostly on elements like the plot, the genre, and the overall quality, instead of just the runtime.
+The scatterplot shows a weak positive relationship between runtime and average vote, so longer movies get slightly better ratings. The points are very spread out, so the audience doesn't have a strong preference. This is probably because people rate a movie more on the story and genre than on its length.
 
 # Week 2
 
@@ -209,7 +200,7 @@ The scatterplot indicates a weak positive correlation between runtime and averag
 
 **Your Answer:**
 
-This is a sample for a larger population. The population would be then all movies from 1990 to 2016 accross all 19 languages. Here we only have a selection of movies and their ratings that try to represent a larger population.
+This is a sample of a larger population. The population would be all movies from 1990 to 2016 across all 19 languages. Here we only have a selection of movies and their ratings that try to represent a larger population.
 
 2
 
@@ -225,7 +216,7 @@ names(sort(table(movies5$first_actor), decreasing = TRUE))[1]
 
 **Your Answer:**
 
-Bruce Willis is the most frequently appearing actor is the movie list.
+Bruce Willis is the most frequently appearing actor in the movie list.
 
 *step b*
 
@@ -233,9 +224,6 @@ Bruce Willis is the most frequently appearing actor is the movie list.
 mean(movies5$revenue)
 bruce_movies <- movies5[which(movies5$first_actor == "Bruce Willis"), ]
 mean(bruce_movies$revenue)
-
-
-
 ```
 
 **Your Answer:**
@@ -340,13 +328,11 @@ b.  Now, assume that the variance of *runtime* amongst thriller movies in your d
 
 ```{r}
 thrillers <- subset(movies5, genre == "Thriller")
-n    <- sum(!is.na(thrillers$runtime))       # number of thrillers
-xbar <- mean(thrillers$runtime, na.rm = TRUE) # average runtime
-s    <- sd(thrillers$runtime, na.rm = TRUE)   # spread of runtimes
+n <- nrow(thrillers)
+xbar <- mean(thrillers$runtime)
+s <- sd(thrillers$runtime)
 t_crit <- qt(0.995, df = n - 1)
 c(xbar - t_crit * s / sqrt(n), xbar + t_crit * s / sqrt(n))
-
-
 ```
 
 **Your Answer:**
@@ -359,12 +345,14 @@ The 99% confidence interval for the mean runtime of thriller movies is [102.69, 
 pop_sd <- sd(movies5$runtime, na.rm = TRUE)
 z_crit <- qnorm(0.995)
 c(xbar - z_crit * pop_sd / sqrt(n), xbar + z_crit * pop_sd / sqrt(n))
+s
+pop_sd
 
 ```
 
 **Your Answer:**
 
-The 99% CI is [101.64, 110.75], which is wider than in 1a, not narrower. The population sd of runtime (19.91) is bigger than the thriller-only sd (15.10) used in 1a, and that outweighs the smaller z critical value.
+The 99% CI is [101.64, 110.75], which is wider than in 1a. This is because the sd of runtime for all movies (19.91) is bigger than the sd of only the thrillers (15.10), and that matters more than the smaller z critical value.
 
 2
 
@@ -398,13 +386,9 @@ upper_crit
 **Your Answer:**
 
 1.  Hypotheses H₀: σ² = 500 H₁: σ² ≠ 500
-
 2.  Test statistic χ² = (n − 1) · s² / σ₀², which follows a chi-square distribution with n − 1 degrees of freedom under H₀.
-
 3.  Significance level and critical values α = 0.05, two-sided test with 908 degrees of freedom. The critical values are 826.39 and 993.40. We reject H₀ if χ² \< 826.39 or χ² \> 993.40.
-
 4.  Calculation n = 909, s² = 396.60 χ² = 908 × 396.60 / 500 = 720.23
-
 5.  Conclusion Since 720.23 \< 826.39, the test statistic falls in the rejection region, so we reject H₀. At the 5% significance level, there is enough evidence that the variance of runtime is not equal to 500. The sample variance is lower, which suggests the true variance is smaller than 500.
 
 *step b*
@@ -452,7 +436,7 @@ hist(movies5$vote_average_rounded,
 
 **Your Answer:**
 
-Most movies have a rating of 5, 6 or 7, and 6 is the most common rating (387 movies).
+Most movies have a rating of 5, 6 or 7, and 6 is the most common rating.
 
 *step b*
 
@@ -481,7 +465,6 @@ Write your formulated response here. Movies that have a rating of 7 tend to achi
 *step c*
 
 ```{r}
-#WRITE YOUR CODE HERE
 library(dplyr)
 
 year_profits <- movies5 %>%
@@ -499,10 +482,11 @@ year_profits <- movies5 %>%
 
 plot(year_profits$release_year,
      year_profits$mean_profits,
-     main = "Mean Profits by Year with 95% Confidence Intervals",
+     main = "Mean Profits by Year (95% CI)",
      xlab = "Year",
      ylab = "Mean Profits (millions)",
-     pch = 19)
+        pch = 19,
+   ylim = range(year_profits$lower, year_profits$upper))
 
 arrows(year_profits$release_year,
        year_profits$lower,
@@ -519,11 +503,10 @@ arrows(year_profits$release_year,
 The mean profits are different every year, but the confidence intervals are wide and mostly overlap, so there is no clear pattern over the years.
 
 *step d*
-Chantal is not right, because movies with a rating of 5 make much less profit (about 33 million) than movies with a rating of 7 (about 108 million). Bob is partly right, since profits go up with the rating until 7, but the few movies rated 8 or 9 do not make more. We would advise the studio to aim for good movies, around a rating of 7.  
 
 **Your Answer:**
   
-Write your formulated response here.
+Chantal is not right, because movies with a rating of 5 make much less profit (about 33 million) than movies with a rating of 7 (about 108 million). Bob is partly right, since profits go up with the rating until 7, but the few movies rated 8 or 9 do not make more. We would advise the studio to aim for good movies, around a rating of 7.
 
 # Week 4
 
