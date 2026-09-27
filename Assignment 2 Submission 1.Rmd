@@ -3,11 +3,11 @@ title: "QRM II Graded Assignment 2"
 author: 'Group 17: Omar Zakkouralashy, Anna Olaru, Nando Fredricks, Floris Hemink '
 date: "`r format(Sys.Date(), '%d-%m-%Y')`"
 output:
+  html_document:
+    df_print: paged
   pdf_document:
     number_sections: true
   word_document: default
-  html_document:
-    df_print: paged
 subtitle: Period 1, 2026
 header-includes:
 - "\\setcounter{section}{-1}"
@@ -31,31 +31,31 @@ knitr::opts_chunk$set(echo = TRUE, fig.height = 2.8)
 
 This assignment is to be completed in groups of 4-5. Further, all students in your group need to be assigned to the same R tutorial group (Friday's tutorial). You can sign yourself up for a group on Canvas. Please do so \textbf{before the start of your first R tutorial on Friday September 4th.} You can use the Discussion Board in Canvas if you do not have a group yet or if your group is incomplete.
 
-The assignment has 5 parts, and each part corresponds to the course material of that week (with the exclusion of week 6, for which there is no R programming material).
+The assignment has 5 parts, and each part corresponds to the course material of that week (with the exclusion of week 6, for which there is no R programming material). 
 
 You are supposed to hand in these assignments on Canvas at the following dates:
 
-- **Deadline 1** *Sunday September 27th, at 23:59pm*: you are supposed to hand in weeks 1, 2, and 3 of this assignment. This will determine 18% of your overall course grade
-- **Deadline 2** *Sunday October 11th, at 23:59pm*: you are supposed to hand in weeks 4, and 5 of this assignment. This will determine 12% of your overall course grade
+  - **Deadline 1** *Sunday September 27th, at 23:59pm*: you are supposed to hand in weeks 1, 2, and 3 of this assignment.   This will determine 18\% of your overall course grade
+  - **Deadline 2** *Sunday October 11th, at 23:59pm*: you are supposed to hand in weeks 4, and 5 of this assignment. This will determine 12\% of your overall course grade
 
 The R tutorials (each Friday) will consist of two halves. During the first half, you will discuss the tutorial exercises. These can be downloaded separately from Canvas. During the second half, you can work on this graded assignment within your own group. The purpose is that you find out how to work with R for doing statistical analyses by yourself. The tutorial exercises are meant to teach you basic commands to get you started, but to answer the problem sets in this assignment, you might need to research your own solutions, and use functions and commands not described in the tutorial exercises. Learning how to solve your own research problems is integral part of learning R. When you and your group get stuck on how to approach an exercise, the hierarchy in finding your way is as follows:
 
-- use the concepts from the tutorial exercises;
+-	use the concepts from the tutorial exercises;
 - use the cheat sheets available on Canvas;
-- use Google, YouTube, StackOverflow, or another website;
+-	use Google, YouTube, StackOverflow, or another website;
 - ask the teacher.
 
-
 The use of generative AI is \textbf{not} permitted and may result in a grade of 0. See the AI protocol in the course manual for details.
-To answer the assignment, you can simply fill out this R markdown document. There are designated places which you can fill with R code. There are also designated spaces for you to answer each question. Often, the structure of an answer will be as follows. First, you type the R code in the designated box. This will show how you analyzed the data to get the answer to the question. Below the box for the R code, you will then summarize your answer to the question, i.e. what are the conclusions that you draw from the data analysis?
 
-When handing in, you are supposed to submit this .Rmd file, and a knitted version of this document. You can knit this document to pdf, word, or html. Knitting to pdf requires you to have a .tex distribution installed on your computer. Knitting to Word requires you to have Word installed.
+To answer the assignment, you can simply fill out this R markdown document. There are designated places which you can fill with R code. There are also designated spaces for you to answer each question. Often, the structure of an answer will be as follows. First, you type the R code in the designated box. This will show how you analyzed the data to get the answer to the question. Below the box for the R code, you will then summarize your answer to the question, i.e. what are the conclusions that you draw from the data analysis? 
+
+When handing in, you are supposed to submit this .Rmd file, and a knitted version of this document. You can knit this document to pdf, word, or html. Knitting to pdf requires you to have a .tex distribution installed on your computer. Knitting to Word requires you to have Word installed. 
 
 The exercises are designed such that you should be able to finish the majority of them during the tutorial each week. If you are not able to finish them fully during that time, you are expected to work on it in your own time using the computers on campus or your own device. It is best to meet as a group in-person when working together. If you want to work remotely, github is a good platform to guarantee smooth collaboration. Alternatively, you can email this .Rmd file back and forth to one another as a group, but this is not recommended as it is more cumbersome.
 
 We encourage you to keep your code blocks, printing statements, and final answers, as short as possible. In any case, there is a page limit of 6 pages per week, which encompasses the total length of this document which consists of the questions, your coding lines, and your answers. When your answers to questions of the respective week exceed this page limit, they will not be graded, resulting in zero points.
 
-Each week consists of 1, 2, or 3 subquestions. The total amount of points you can earn per week is 20 points.
+Each week consists of 1, 2, or 3 subquestions. The total amount of points you can earn per week is 20 points. 
 
 # Week 1
 
