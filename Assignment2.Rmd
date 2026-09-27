@@ -1,7 +1,7 @@
 ---
 title: "QRM II Graded Assignment 2"
 subtitle: "Period 1, 2026"
-author: "Group 17: Omar zakkourlashy, Anna Olaru, "
+author: "Group 17: Omar zakkourlashy, Anna Olaru, Nando Fredricks "
 date:  "`r format(Sys.Date(), '%d-%m-%Y')`"
 output:
   pdf_document:
@@ -266,7 +266,9 @@ e.  In your opinion, is a sample of 25 movies sufficient to get a reliable estim
 
 ```{r}
 movies5$profits <- movies5$revenue - movies5$budget
+
 movies5$profits <- movies5$profits / 1000000
+
 mean((movies5$profits - mean(movies5$profits))^2)
 
 ```
@@ -451,8 +453,7 @@ hist(movies5$vote_average_rounded,
 
 **Your Answer:**
 
-Write your formulated response here.
-The histogram shows that most movies have a rating between 4 and 6.The most common rating is around 5.
+Write your formulated response here. The histogram shows that most movies have a rating between 4 and 6.The most common rating is around 5.
 
 *step b*
 
@@ -476,8 +477,7 @@ mean_profits[which.max(mean_profits$profits), ]
 
 **Your Answer:**
 
-Write your formulated response here.
-Movies that have a rating of 7 tend to achieve the highest average profits, amounting to 107.59 million in earnings
+Write your formulated response here. Movies that have a rating of 7 tend to achieve the highest average profits, amounting to 107.59 million in earnings
 
 *step c*
 
@@ -517,15 +517,9 @@ arrows(year_profits$release_year,
 
 **Your Answer:**
 
-Write your formulated response here.
-The graph shows that the mean profits are different for each year. The 95% confidence intervals are quite large, so the profits can vary a lot.
+Write your formulated response here. The graph shows that the mean profits are different for each year. The 95% confidence intervals are quite large, so the profits can vary a lot.
 
-*step d*
-Based on the results, the studio should not focus only on making the highest-quality movies. Movies with a rating of 7 earn the highest average profits, at about 107.59 million. This shows that movies with a high rating, but not the highest, can still be very profitable. However, the confidence intervals show that average profits vary across years, so there is uncertainty. This means neither Bob nor Chantal is completely right. The studio should aim to make good-quality movies, while also considering other factors that affect profits.
-
-
-
-
+*step d* Based on the results, the studio should not focus only on making the highest-quality movies. Movies with a rating of 7 earn the highest average profits, at about 107.59 million. This shows that movies with a high rating, but not the highest, can still be very profitable. However, the confidence intervals show that average profits vary across years, so there is uncertainty. This means neither Bob nor Chantal is completely right. The studio should aim to make good-quality movies, while also considering other factors that affect profits.
 
 **Your Answer:**
 
@@ -582,12 +576,10 @@ Write your formulated response here.
 
 ```{r}
 movies5$logprofits <- log(movies5$profits)
-
-movies5$logprofits[movies5$profits <= 0] <- NA
-
 movies5$logbudget <- log(movies5$budget)
 
-movies5$logbudget[movies5$budget <= 0] <- NA
+movies5$logprofits[movies5$revenue == 0 | movies5$budget == 0] <- NA
+movies5$logbudget[movies5$revenue == 0 | movies5$budget == 0] <- NA
 
 mod_log <- lm(logprofits ~ logbudget, data = movies5)
 
@@ -727,7 +719,8 @@ plot(month_means$release_month,
 
 **Your Answer:**
 
-The plot shows that average profits vary across the months. June and November have relatively high average profits, while September has relatively low average profits. This suggests that the month of release may matter for movie profits.
+The plot shows that average profits vary across the months. June and November have relatively high average profits, while September\
+has relatively low average profits. This suggests that the month of release may matter for movie profits.
 
 *step b*
 
