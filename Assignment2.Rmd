@@ -452,6 +452,7 @@ hist(movies5$vote_average_rounded,
 **Your Answer:**
 
 Write your formulated response here.
+The histogram shows that most movies have a rating between 4 and 6.The most common rating is around 5.
 
 *step b*
 
@@ -517,6 +518,7 @@ arrows(year_profits$release_year,
 **Your Answer:**
 
 Write your formulated response here.
+The graph shows that the mean profits are different for each year. The 95% confidence intervals are quite large, so the profits can vary a lot.
 
 *step d*
 Based on the results, the studio should not focus only on making the highest-quality movies. Movies with a rating of 7 earn the highest average profits, at about 107.59 million. This shows that movies with a high rating, but not the highest, can still be very profitable. However, the confidence intervals show that average profits vary across years, so there is uncertainty. This means neither Bob nor Chantal is completely right. The studio should aim to make good-quality movies, while also considering other factors that affect profits.
