@@ -1,0 +1,2371 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{section}{-1}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+  showspaces = false,
+  showtabs = false,
+  breaklines,
+  commandchars=\\\{\}
+}
+
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={QRM II Graded Assignment 2},
+  pdfauthor={Group 17: Omar Zakkouralashy, Anna Olaru, Nando Fredricks, Floris Hemink},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{QRM II Graded Assignment 2}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Period 1, 2026}
+\author{Group 17: Omar Zakkouralashy, Anna Olaru, Nando Fredricks,
+Floris Hemink}
+\date{27-09-2026}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}\label{introduction}
+
+This assignment is to be completed in groups of 4-5. Further, all
+students in your group need to be assigned to the same R tutorial group
+(Friday's tutorial). You can sign yourself up for a group on Canvas.
+Please do so
+\textbf{before the start of your first R tutorial on Friday September 4th.}
+You can use the Discussion Board in Canvas if you do not have a group
+yet or if your group is incomplete.
+
+The assignment has 5 parts, and each part corresponds to the course
+material of that week (with the exclusion of week 6, for which there is
+no R programming material).
+
+You are supposed to hand in these assignments on Canvas at the following
+dates:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Deadline 1} \emph{Sunday September 27th, at 23:59pm}: you are
+  supposed to hand in weeks 1, 2, and 3 of this assignment. This will
+  determine 18\% of your overall course grade
+\item
+  \textbf{Deadline 2} \emph{Sunday October 11th, at 23:59pm}: you are
+  supposed to hand in weeks 4, and 5 of this assignment. This will
+  determine 12\% of your overall course grade
+\end{itemize}
+
+The R tutorials (each Friday) will consist of two halves. During the
+first half, you will discuss the tutorial exercises. These can be
+downloaded separately from Canvas. During the second half, you can work
+on this graded assignment within your own group. The purpose is that you
+find out how to work with R for doing statistical analyses by yourself.
+The tutorial exercises are meant to teach you basic commands to get you
+started, but to answer the problem sets in this assignment, you might
+need to research your own solutions, and use functions and commands not
+described in the tutorial exercises. Learning how to solve your own
+research problems is integral part of learning R. When you and your
+group get stuck on how to approach an exercise, the hierarchy in finding
+your way is as follows:
+
+\begin{itemize}
+\tightlist
+\item
+  use the concepts from the tutorial exercises;
+\item
+  use the cheat sheets available on Canvas;
+\item
+  use Google, YouTube, StackOverflow, or another website;
+\item
+  ask the teacher.
+\end{itemize}
+
+To answer the assignment, you can simply fill out this R markdown
+document. There are designated places which you can fill with R code.
+There are also designated spaces for you to answer each question. Often,
+the structure of an answer will be as follows. First, you type the R
+code in the designated box. This will show how you analyzed the data to
+get the answer to the question. Below the box for the R code, you will
+then summarize your answer to the question, i.e.~what are the
+conclusions that you draw from the data analysis?
+
+When handing in, you are supposed to submit this .Rmd file, and a
+knitted version of this document. You can knit this document to pdf,
+word, or html. Knitting to pdf requires you to have a .tex distribution
+installed on your computer. Knitting to Word requires you to have Word
+installed.
+
+The exercises are designed such that you should be able to finish the
+majority of them during the tutorial each week. If you are not able to
+finish them fully during that time, you are expected to work on it in
+your own time using the computers on campus or your own device. It is
+best to meet as a group in-person when working together. If you want to
+work remotely, github is a good platform to guarantee smooth
+collaboration. Alternatively, you can email this .Rmd file back and
+forth to one another as a group, but this is not recommended as it is
+more cumbersome.
+
+We encourage you to keep your code blocks, printing statements, and
+final answers, as short as possible. In any case, there is a page limit
+of 6 pages per week, which encompasses the total length of this document
+which consists of the questions, your coding lines, and your answers.
+When your answers to questions of the respective week exceed this page
+limit, they will not be graded, resulting in zero points.
+
+Each week consists of 1, 2, or 3 subquestions. The total amount of
+points you can earn per week is 20 points.
+
+\section{Week 1}\label{week-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Find the dataset ``movies5.tsv'' on Canvas. Describe your data set:
+  How many observations does it have. How many variables are there? How
+  many subjects? What consists of a subject? \textbf{[4 points]}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies5}\OtherTok{\textless{}{-}}\FunctionTok{read.table}\NormalTok{(}\StringTok{"movies5.tsv"}\NormalTok{,}\AttributeTok{sep=}\StringTok{"}\SpecialCharTok{\textbackslash{}t}\StringTok{"}\NormalTok{, }\AttributeTok{header=}\ConstantTok{TRUE}\NormalTok{ )}
+\FunctionTok{dim}\NormalTok{(movies5)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 909  19
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nrow}\NormalTok{(movies5)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 909
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ncol}\NormalTok{(movies5)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 19
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#This dataset contains 909 observations under 19 variables, and each observation is linked to a single movie}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+The dataset has 909 observations and 19 variables. Each observation is
+one movie, so a subject is a single movie.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Which of the following types of variables are present in your data
+  set? (i) nominal; (ii) ordinal; (iii); interval; (iv) ratio. If
+  present, name one example of such a variable present in your data set.
+  \textbf{[4 points]}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(movies5)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      index          budget               keywords   original_language
+##  Min.   :   3   Min.   :        0   Length   :909   Length   :909    
+##  1st Qu.:1048   1st Qu.:  1500000   N.unique :799   N.unique : 19    
+##  Median :2195   Median : 18000000   N.blank  :  0   N.blank  :  0    
+##  Mean   :2263   Mean   : 32561665   Min.nchar:  2   Min.nchar:  2    
+##  3rd Qu.:3362   3rd Qu.: 45000000   Max.nchar:103   Max.nchar:  2    
+##  Max.   :4802   Max.   :250000000   NAs      : 89                    
+##        title       popularity           release_date    revenue         
+##  Length   :909   Min.   :  0.00239   Length   :909   Min.   :0.000e+00  
+##  N.unique :909   1st Qu.:  5.02309   N.unique :810   1st Qu.:0.000e+00  
+##  N.blank  :  0   Median : 14.03851   N.blank  :  0   Median :2.548e+07  
+##  Min.nchar:  1   Mean   : 22.93180   Min.nchar: 10   Mean   :8.885e+07  
+##  Max.nchar: 66   3rd Qu.: 29.60832   Max.nchar: 10   3rd Qu.:1.016e+08  
+##                  Max.   :875.58130                   Max.   :1.157e+09  
+##     runtime     vote_average     vote_count            genre      release_year 
+##  Min.   :  0   Min.   :0.000   Min.   :    0.0   Length   :909   Min.   :1990  
+##  1st Qu.: 95   1st Qu.:5.500   1st Qu.:   61.0   N.unique : 14   1st Qu.:2001  
+##  Median :105   Median :6.200   Median :  251.0   N.blank  :  0   Median :2006  
+##  Mean   :107   Mean   :6.011   Mean   :  744.6   Min.nchar:  5   Mean   :2006  
+##  3rd Qu.:118   3rd Qu.:6.800   3rd Qu.:  799.0   Max.nchar: 11   3rd Qu.:2011  
+##  Max.   :214   Max.   :9.500   Max.   :10099.0   NAs      :  7   Max.   :2016  
+##  release_month     release_day       first_actor  first_actor_gender
+##  Min.   : 1.000   Min.   : 1.00   Length   :909   Length   :909     
+##  1st Qu.: 4.000   1st Qu.: 8.00   N.unique :609   N.unique :  2     
+##  Median : 8.000   Median :16.00   N.blank  :  0   N.blank  :  0     
+##  Mean   : 6.942   Mean   :15.53   Min.nchar:  6   Min.nchar:  4     
+##  3rd Qu.:10.000   3rd Qu.:23.00   Max.nchar: 23   Max.nchar:  6     
+##  Max.   :12.000   Max.   :31.00   NAs      :  6   NAs      : 37     
+##  director_first_name  director_gender
+##  Length   :909       Length   :909   
+##  N.unique :387       N.unique :  2   
+##  N.blank  :  0       N.blank  :  0   
+##  Min.nchar:  2       Min.nchar:  4   
+##  Max.nchar: 12       Max.nchar:  6   
+##  NAs      :  3       NAs      : 47
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The dataset has nominal (e.g.~genre), interval (e.g.~vote\_average), and
+ratio (e.g.~budget, revenue, runtime) variables. No ordinal variable
+seems to be present.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  A movie studio wants to know which types of movies give maximal
+  profit. Perform the following steps to provide the movie studio with
+  an analysis which corresponds to their request:
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Create the variable profits as the revenue of a movie minus its
+  budget. Report its mean, median, maximum, and minimum.
+  \textbf{[2 points]}
+\item
+  Which movie has the highest profits in your data set and how much are
+  these profits. Which movie has the lowest and how much are its
+  profits? If multiple movies have the exact same highest or lowest
+  profits, give only one example. \textbf{[2 points]}
+\item
+  Create a boxplot of the variable profits. Make sure it has an
+  appropriate title, and appropriate titles and labels for the x- and
+  y-axis. Give Q1, Q2, Q3, and Q4. What does this tell you about the
+  nature of making money in the movies industry? \textbf{[2 points]}
+\item
+  Add a new variable to your data set the log of profits. When creating
+  this variable, what happens to movies for which profits is zero or
+  negative? What then happens when you calculate the mean of log of
+  profits? \textbf{[2 points]}
+\item
+  For movies that have a profit of zero or less, replace log of profits
+  with ``NA''. What is now the mean of log of profits? Create a boxplot
+  for log of profits, again with an appropriate title, x- and y-axis
+  labels. How does it compare to the boxplot you made under c.)?
+  \textbf{[2 points]}
+\item
+  Create a scatterplot of with the runtime of movies on the x-axis and
+  the average vote of movies on the y-axis. What do you conclude from
+  the scatterplot? Are movies with a longer runtime considered worse or
+  better by the audience, or does the audience not have a preference?
+  Why do you think this is the case? \textbf{[2 points]}
+\end{enumerate}
+
+For each step, you should provide first all the code you used to answer
+the question and then formulate an answer using full sentences.
+
+\emph{Step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{profits }\OtherTok{\textless{}{-}}\NormalTok{ movies5}\SpecialCharTok{$}\NormalTok{revenue }\SpecialCharTok{{-}}\NormalTok{ movies5}\SpecialCharTok{$}\NormalTok{budget}
+\FunctionTok{mean}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{profits)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 56284650
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{median}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{profits)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2942221
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{max}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{profits)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1082730962
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{min}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{profits)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -98301101
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The mean profit is 56,284,650, the median is 2,942,221, the max is
+1,082,730,962, and the min is -98,301,101.
+
+\emph{Step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies5[}\FunctionTok{which.max}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{profits), }\FunctionTok{c}\NormalTok{(}\StringTok{"title"}\NormalTok{, }\StringTok{"profits"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       title    profits
+## 870 Minions 1082730962
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies5[}\FunctionTok{which.min}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{profits), }\FunctionTok{c}\NormalTok{(}\StringTok{"title"}\NormalTok{, }\StringTok{"profits"}
+\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                title   profits
+## 854 The 13th Warrior -98301101
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#the data shows that movie 870: the minions is the most profitable with 1.082.730.962 in profits and movie 854: the 13th warrior as least profitable with {-}98.301.101 in losses}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+The most profitable movie is Minions, with profits of 1,082,730,962. The
+least profitable is The 13th Warrior, with a loss of 98,301,101.
+
+\emph{Step c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{profits,}
+        \AttributeTok{main=} \StringTok{"Boxplot of movie profits"}\NormalTok{,}
+        \AttributeTok{xlab=} \StringTok{"movies5"}\NormalTok{,}
+        \AttributeTok{ylab=} \StringTok{"Profits"}\NormalTok{,}
+        \AttributeTok{col=} \StringTok{"lightblue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment2_files/Assignment2_files/figure-latex/unnamed-chunk-5-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{quantile}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{profits)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         0%        25%        50%        75%       100% 
+##  -98301101   -1260859    2942221   61340801 1082730962
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+These quartiles show us that the movie industry is very risky and hit
+driven as the first quartile is negative, showing important losses.
+Meanwhile, the jump between the second and third quartile further
+supports the idea that only a few movies generate revenue for most of
+the industry. Q1 = -1,260,859, Q2 = 2,942,221, Q3 = 61,340,801, Q4 =
+1,082,730,962
+
+\emph{Step d}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{logprofits }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{profits)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in log(movies5$profits): NaNs produced
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{logprofits)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] NaN
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The mean of logprofits is NaN because the dataset contains zero and
+negative profits. The logarithm of zero results in -Inf, while the
+logarithm of a negative value results in NaN.
+
+\emph{Step e}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{logprofits[movies5}\SpecialCharTok{$}\NormalTok{profits }\SpecialCharTok{\textless{}=} \DecValTok{0}\NormalTok{] }\OtherTok{\textless{}{-}} \ConstantTok{NA}
+
+\FunctionTok{mean}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{logprofits, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 17.5448
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{logprofits,}
+        
+        \AttributeTok{main =} \StringTok{"Boxplot of Log Movie Profits"}\NormalTok{,}
+        
+        \AttributeTok{xlab =} \StringTok{"Movies"}\NormalTok{,}
+        
+        \AttributeTok{ylab =} \StringTok{"Log of Profits"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment2_files/Assignment2_files/figure-latex/unnamed-chunk-7-1.pdf}}
+
+\textbf{Your Answer:}
+
+We replace zero and negative profits with NA so they are excluded from
+the calculation. The log transformation also reduces the influence of
+extremely high profits, resulting in a more balanced distribution. The
+mean of log profits is now 17.54.
+
+\emph{Step f}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 4.6.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(movies5, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ runtime, }\AttributeTok{y =}\NormalTok{ vote\_average)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{x =} \StringTok{"Runtime (minutes)"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Average vote"}\NormalTok{,}
+    \AttributeTok{title =} \StringTok{"Runtime vs Average Movie Vote"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment2_files/Assignment2_files/figure-latex/unnamed-chunk-8-1.pdf}}
+
+\textbf{Your Answer}
+
+Write your formulated response here.
+
+The scatterplot indicates a weak positive correlation between runtime
+and average rating. It appears that films with a longer runtime tend to
+get somewhat better scores from viewers. Still, the connection is not
+particularly strong, since the data points are quite scattered. A
+possible explanation is that viewers judge a film mostly on elements
+like the plot, the genre, and the overall quality, instead of just the
+runtime.
+
+\section{Week 2}\label{week-2}
+
+1 Is your dataset movies5.tsv the full population, or is it a sample of
+a larger population? If the latter, how would you describe the full
+population? \textbf{[4 points]}
+
+\textbf{Your Answer:}
+
+This is a sample for a larger population. The population would be then
+all movies from 1990 to 2016 accross all 19 languages. Here we only have
+a selection of movies and their ratings that try to represent a larger
+population.
+
+2
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  For which actor in your data set do you observe the most movies?
+  \textbf{[2 points]}
+\item
+  What is the average revenue of the movie in which this actor plays and
+  does the revenue lie above or below the revenue of an average movie
+  according to your data set? \textbf{[2 points]}\\
+\item
+  How trustworthy do you consider your conclusion to answer 2b? Use the
+  term ``law of large numbers'' in your explanation. \textbf{[2 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{names}\NormalTok{(}\FunctionTok{sort}\NormalTok{(}\FunctionTok{table}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{first\_actor), }\AttributeTok{decreasing =} \ConstantTok{TRUE}\NormalTok{))[}\DecValTok{1}\NormalTok{] }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Bruce Willis"
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+Bruce Willis is the most frequently appearing actor is the movie list.
+
+\emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{revenue)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 88846315
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bruce\_movies }\OtherTok{\textless{}{-}}\NormalTok{ movies5[}\FunctionTok{which}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{first\_actor }\SpecialCharTok{==} \StringTok{"Bruce Willis"}\NormalTok{), ]}
+\FunctionTok{mean}\NormalTok{(bruce\_movies}\SpecialCharTok{$}\NormalTok{revenue)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 228062987
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The average revenues of all the movies in the given data is
+88.846.315,00. Meanwhile the average revenue of all movies in the list
+starring Bruce Willis is 228.062.987,00 which lies over the average
+total mean.
+
+\emph{step c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+With only 8 observations, this average could easily be thrown off by one
+or two blockbusters like Armageddon. The law of large numbers says the
+sample mean gets closer to the true mean as sample size grows, so with
+n=8 we shouldn't put much weight on this number.
+
+3 For this question, you will assume that your data set is the full
+population.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Recode profits such that it is expressed in millions. What is the
+  variance of the variable profits (in millions) in your data set?
+  \textbf{[2 points]}
+\item
+  Create a new data set, called movies\_sample. Make sure that it is a
+  random sample of your data set of 25 movies. What is the variance of
+  profits in this random sample? How does it compare to the variance of
+  profits in 2a? \textbf{[2 points]}
+\item
+  In a for loop, create 100 different samples of 25 movies, as in b, and
+  estimate the variance within each sample. Save the variance of each
+  sample in a vector called sample\_vars. So the first position of the
+  vector would have the variance of the first sample, the second
+  position the variance of the second sample, etc. Print the start of
+  this vector. \textbf{[2 points]}
+\item
+  Summarize and make a histogram of sample\_vars. What is the mean,
+  standard deviation and shape of its distribution? \textbf{[2 points]}
+\item
+  In your opinion, is a sample of 25 movies sufficient to get a reliable
+  estimate of the population variance of profits, using the sample
+  variance? Explain? \textbf{[2 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{profits }\OtherTok{\textless{}{-}}\NormalTok{ movies5}\SpecialCharTok{$}\NormalTok{revenue }\SpecialCharTok{{-}}\NormalTok{ movies5}\SpecialCharTok{$}\NormalTok{budget}
+
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{profits }\OtherTok{\textless{}{-}}\NormalTok{ movies5}\SpecialCharTok{$}\NormalTok{profits }\SpecialCharTok{/} \DecValTok{1000000}
+
+\FunctionTok{mean}\NormalTok{((movies5}\SpecialCharTok{$}\NormalTok{profits }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{profits))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 17802.62
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The variance of profits is 17,802.62.
+
+\emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{movies\_sample }\OtherTok{\textless{}{-}}\NormalTok{ movies5[}\FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(movies5), }\DecValTok{25}\NormalTok{), ]}
+\FunctionTok{var}\NormalTok{(movies\_sample}\SpecialCharTok{$}\NormalTok{profits, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20712.43
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The variance of profits in the random sample is 20,712.43. This is
+higher than the variance of profits in the full dataset, which is
+17,802.62. This difference is because the sample only contains 25
+randomly selected movies.
+
+\emph{step c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{profits }\OtherTok{\textless{}{-}}\NormalTok{ (movies5}\SpecialCharTok{$}\NormalTok{revenue }\SpecialCharTok{{-}}\NormalTok{ movies5}\SpecialCharTok{$}\NormalTok{budget) }\SpecialCharTok{/} \DecValTok{1000000}
+
+\NormalTok{sample\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{) \{}
+\NormalTok{  movies\_sample }\OtherTok{\textless{}{-}}\NormalTok{ movies5[}\FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(movies5), }\DecValTok{25}\NormalTok{), ]}
+\NormalTok{  sample\_vars[i] }\OtherTok{\textless{}{-}} \FunctionTok{var}\NormalTok{(movies\_sample}\SpecialCharTok{$}\NormalTok{profits)}
+\NormalTok{\}}
+\FunctionTok{head}\NormalTok{(sample\_vars)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  8899.277 16467.070 13165.586  6328.324  5646.612  8375.528
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The variances range from about 1,800 to 75,000 across the 100 samples,
+since each sample of 25 picks up a different mix of high and low profit
+movies.
+
+\emph{step d}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(sample\_vars)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1841    5522   11680   17063   23000   75455
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(sample\_vars)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 15434.27
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(sample\_vars,}
+     \AttributeTok{main =} \StringTok{"Histogram of Sample Variances"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Sample Variance"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment2_files/Assignment2_files/figure-latex/unnamed-chunk-15-1.pdf}}
+
+\textbf{Your Answer:} The 100 sample variances have a mean of about
+17000 and a standard deviation of about 15400. The distribution is right
+skewed and the mean is above the median because some samples contain
+high profit movies which create large variance.
+
+\emph{step e}
+
+\textbf{Your Answer:} Not very reliable because the standard deviation
+of the sample variances is nearly as large as the mean so a sample of 25
+can give a very different estimate from the true population variance.
+
+\section{Week 3}\label{week-3}
+
+For the next part of the assignment, assume that the movies in your data
+frame are a random sample of a larger population of movies.
+
+1
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Create a new data set that only includes movies that are of the genre
+  ``Thriller''. For these thriller movies, give a 99 percent confidence
+  interval for the variable \emph{runtime}. Interpret the result.
+  \textbf{[2 points]}
+\item
+  Now, assume that the variance of \emph{runtime} amongst thriller
+  movies in your data is exactly the same as the variance of
+  \emph{runtime} in the population. Under this assumption, give a 99
+  percent confidence interval for the variable \emph{runtime} among
+  thriller movies. Interpret the result. Is you confidence interval
+  wider or less wide than the one you found under question 1a? Why is
+  that the case? \textbf{[2 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{thrillers }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(movies5, genre }\SpecialCharTok{==} \StringTok{"Thriller"}\NormalTok{)}
+\NormalTok{n    }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(thrillers}\SpecialCharTok{$}\NormalTok{runtime))       }\CommentTok{\# number of thrillers}
+\NormalTok{xbar }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(thrillers}\SpecialCharTok{$}\NormalTok{runtime, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{) }\CommentTok{\# average runtime}
+\NormalTok{s    }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(thrillers}\SpecialCharTok{$}\NormalTok{runtime, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)   }\CommentTok{\# spread of runtimes}
+\NormalTok{t\_crit }\OtherTok{\textless{}{-}} \FunctionTok{qt}\NormalTok{(}\FloatTok{0.995}\NormalTok{, }\AttributeTok{df =}\NormalTok{ n }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}
+\FunctionTok{c}\NormalTok{(xbar }\SpecialCharTok{{-}}\NormalTok{ t\_crit }\SpecialCharTok{*}\NormalTok{ s }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n), xbar }\SpecialCharTok{+}\NormalTok{ t\_crit }\SpecialCharTok{*}\NormalTok{ s }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 102.6930 109.7007
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The 99\% confidence interval for the mean runtime of thriller movies is
+{[}102.69, 109.70{]} minutes. This means we are 99\% confident that the
+true average runtime of all thriller movies in the population lies
+between roughly 102.7 and 109.7 minutes.
+
+\emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pop\_sd }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{runtime, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{z\_crit }\OtherTok{\textless{}{-}} \FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.995}\NormalTok{)}
+\FunctionTok{c}\NormalTok{(xbar }\SpecialCharTok{{-}}\NormalTok{ z\_crit }\SpecialCharTok{*}\NormalTok{ pop\_sd }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n), xbar }\SpecialCharTok{+}\NormalTok{ z\_crit }\SpecialCharTok{*}\NormalTok{ pop\_sd }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 101.6449 110.7488
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The 99\% CI is {[}101.64, 110.75{]}, which is wider than in 1a, not
+narrower. The population sd of runtime (19.91) is bigger than the
+thriller-only sd (15.10) used in 1a, and that outweighs the smaller z
+critical value.
+
+2
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Using an appropriate five-step procedure, set up a test for the null
+  hypothesis that the variance of runtime equals \(500\). Clearly state
+  your null hypothesis, alternative hypothesis your test statistic, your
+  critical value, and your conclusion. \textbf{[2 points]}
+\item
+  For the validity of your test in 2a, what assumption about the
+  distribution of revenue needs to hold? Make an appropriate plot to
+  test this assumption. What do you conclude? \textbf{[2 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{runtime }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{runtime)}
+
+\NormalTok{n  }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(runtime)}
+\NormalTok{s2 }\OtherTok{\textless{}{-}} \FunctionTok{var}\NormalTok{(runtime)          }\CommentTok{\# sample variance}
+
+
+\NormalTok{chi2 }\OtherTok{\textless{}{-}}\NormalTok{ (n }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{*}\NormalTok{ s2 }\SpecialCharTok{/} \DecValTok{500}
+
+\CommentTok{\# Critical values (two{-}sided, alpha = 0.05)}
+\NormalTok{lower\_crit }\OtherTok{\textless{}{-}} \FunctionTok{qchisq}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\AttributeTok{df =}\NormalTok{ n }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}
+\NormalTok{upper\_crit }\OtherTok{\textless{}{-}} \FunctionTok{qchisq}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{df =}\NormalTok{ n }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}
+
+\NormalTok{n}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 909
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 396.6046
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chi2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 720.234
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lower\_crit}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 826.3872
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{upper\_crit}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 993.4009
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Hypotheses H₀: σ² = 500 H₁: σ² ≠ 500
+\item
+  Test statistic χ² = (n − 1) · s² / σ₀², which follows a chi-square
+  distribution with n − 1 degrees of freedom under H₀.
+\item
+  Significance level and critical values α = 0.05, two-sided test with
+  908 degrees of freedom. The critical values are 826.39 and 993.40. We
+  reject H₀ if χ² \textless{} 826.39 or χ² \textgreater{} 993.40.
+\item
+  Calculation n = 909, s² = 396.60 χ² = 908 × 396.60 / 500 = 720.23
+\item
+  Conclusion Since 720.23 \textless{} 826.39, the test statistic falls
+  in the rejection region, so we reject H₀. At the 5\% significance
+  level, there is enough evidence that the variance of runtime is not
+  equal to 500. The sample variance is lower, which suggests the true
+  variance is smaller than 500.
+\end{enumerate}
+
+\emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{))   }\CommentTok{\# two plots side by side}
+
+\FunctionTok{hist}\NormalTok{(runtime, }\AttributeTok{breaks =} \DecValTok{40}\NormalTok{, }\AttributeTok{main =} \StringTok{"Histogram of runtime"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Runtime (minutes)"}\NormalTok{)}
+
+\FunctionTok{qqnorm}\NormalTok{(runtime, }\AttributeTok{main =} \StringTok{"Normal QQ plot of runtime"}\NormalTok{)}
+\FunctionTok{qqline}\NormalTok{(runtime, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment2_files/Assignment2_files/figure-latex/unnamed-chunk-20-1.pdf}}
+
+\textbf{Your Answer:}
+
+The chi-square test for the variance is only valid if runtime is
+normally distributed. To check this, we made a histogram and a normal QQ
+plot of runtime.
+
+The histogram is roughly bell-shaped in the middle, but it is skewed to
+the right, with a longer tail of very long movies. There are also a few
+movies with a runtime of 0, which are probably missing values. In the QQ
+plot, the points follow the line in the middle but move away from it at
+both ends so long movies lie above the line and the 0-minute movies lie
+far below it.
+
+We conclude that runtime is not normally distributed, so the assumption
+behind the test in 2a does not hold.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  There is an argument going on in the movie studio. \emph{Bob} claims
+  that they should make higher-quality movies, as this will bring in
+  more profits. \emph{Chantal} disagrees. She tells Bob that mediocre
+  movies bring in the most profits. You are asked to advise on who is
+  right.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Create a new variable called vote\_average\_rounded. Make sure this
+  variable is the same as vote\_average, but without any decimals (i.e.,
+  a 6.3 becomes a 6, a 8.7 an 8, etc.). Display a histogram of
+  vote\_average\_rounded. \textbf{[2 points]}
+\item
+  Create a scatter plot with vote\_average\_rounded on the x axis and
+  the mean of profits within each category of vote\_average\_rounded on
+  the y-axis. Make sure it has an appropriate title, and appropriate
+  titles and labels for the x- and y-axis. At which rating of movies are
+  profits the highest? \textbf{[3 points]}
+\item
+  Recreate the scatter plot with year on the x axis and mean\_profits on
+  the y-axis, but now add bars around each point, indicating the 95\%
+  confidence interval. \textbf{[3 points]}
+\item
+  Write an advice to settle the argument between Bob and Chantal.
+  \textbf{[4 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{vote\_average\_rounded }\OtherTok{\textless{}{-}} \FunctionTok{floor}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{vote\_average)}
+
+\FunctionTok{hist}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{vote\_average\_rounded,}
+     \AttributeTok{main =} \StringTok{"Distribution of Movie Ratings"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Movie Rating"}\NormalTok{,}
+     \AttributeTok{ylab =} \StringTok{"Frequency"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment2_files/Assignment2_files/figure-latex/unnamed-chunk-21-1.pdf}}
+
+\textbf{Your Answer:}
+
+Most movies have a rating of 5, 6 or 7, and 6 is the most common rating
+(387 movies).
+
+\emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+
+\NormalTok{mean\_profits }\OtherTok{\textless{}{-}} \FunctionTok{aggregate}\NormalTok{(profits }\SpecialCharTok{\textasciitilde{}}\NormalTok{ vote\_average\_rounded,}
+                          \AttributeTok{data =}\NormalTok{ movies5,}
+                          \AttributeTok{FUN =}\NormalTok{ mean,}
+                          \AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+
+\FunctionTok{plot}\NormalTok{(mean\_profits}\SpecialCharTok{$}\NormalTok{vote\_average\_rounded,}
+\NormalTok{     mean\_profits}\SpecialCharTok{$}\NormalTok{profits,}
+     \AttributeTok{main =} \StringTok{"Average Profits by Movie Rating"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Movie Rating"}\NormalTok{,}
+     \AttributeTok{ylab =} \StringTok{"Mean Profits"}\NormalTok{,}
+     \AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment2_files/Assignment2_files/figure-latex/unnamed-chunk-22-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean\_profits[}\FunctionTok{which.max}\NormalTok{(mean\_profits}\SpecialCharTok{$}\NormalTok{profits), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   vote_average_rounded  profits
+## 7                    7 107.5851
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+Write your formulated response here. Movies that have a rating of 7 tend
+to achieve the highest average profits, amounting to 107.59 million in
+earnings
+
+\emph{step c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{year\_profits }\OtherTok{\textless{}{-}}\NormalTok{ movies5 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(release\_year) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{mean\_profits =} \FunctionTok{mean}\NormalTok{(profits, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{sd\_profits =} \FunctionTok{sd}\NormalTok{(profits, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{n =} \FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(profits))}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{se =}\NormalTok{ sd\_profits }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n),}
+    \AttributeTok{lower =}\NormalTok{ mean\_profits }\SpecialCharTok{{-}} \FunctionTok{qt}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{df =}\NormalTok{ n }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{*}\NormalTok{ se,}
+    \AttributeTok{upper =}\NormalTok{ mean\_profits }\SpecialCharTok{+} \FunctionTok{qt}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{df =}\NormalTok{ n }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{*}\NormalTok{ se}
+\NormalTok{  )}
+
+\FunctionTok{plot}\NormalTok{(year\_profits}\SpecialCharTok{$}\NormalTok{release\_year,}
+\NormalTok{     year\_profits}\SpecialCharTok{$}\NormalTok{mean\_profits,}
+     \AttributeTok{main =} \StringTok{"Mean Profits by Year with 95\% Confidence Intervals"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Year"}\NormalTok{,}
+     \AttributeTok{ylab =} \StringTok{"Mean Profits (millions)"}\NormalTok{,}
+     \AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
+
+\FunctionTok{arrows}\NormalTok{(year\_profits}\SpecialCharTok{$}\NormalTok{release\_year,}
+\NormalTok{       year\_profits}\SpecialCharTok{$}\NormalTok{lower,}
+\NormalTok{       year\_profits}\SpecialCharTok{$}\NormalTok{release\_year,}
+\NormalTok{       year\_profits}\SpecialCharTok{$}\NormalTok{upper,}
+       \AttributeTok{angle =} \DecValTok{90}\NormalTok{,}
+       \AttributeTok{code =} \DecValTok{3}\NormalTok{,}
+       \AttributeTok{length =} \FloatTok{0.05}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment2_files/Assignment2_files/figure-latex/unnamed-chunk-23-1.pdf}}
+
+\textbf{Your Answer:}
+
+The mean profits are different every year, but the confidence intervals
+are wide and mostly overlap, so there is no clear pattern over the
+years.
+
+\emph{step d} Chantal is not right, because movies with a rating of 5
+make much less profit (about 33 million) than movies with a rating of 7
+(about 108 million). Bob is partly right, since profits go up with the
+rating until 7, but the few movies rated 8 or 9 do not make more. We
+would advise the studio to aim for good movies, around a rating of 7.
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\section{Week 4}\label{week-4}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  There is another argument going on in the movie studio. \emph{Bob}
+  claims that production budgets are getting out of hand, and that the
+  studio should focus on making cheaper movies. \emph{Chantal}
+  disagrees. She tells Bob that ``Every dollar we spend on movie
+  production is more than offset by the increase in movie profits'\,'.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Set up a regression model to test Chantal's claim, and estimate it.
+  That is, estimate:
+  \[\text{Profits}_i=\beta_0+\beta_1 \text{Budget}_i +\varepsilon_i.\]
+  Print a summary of your estimated model. \textbf{[2 points]}
+\item
+  What is the estimated value of \(\beta_1\) and how do you interpet it?
+  \textbf{[2 points]}
+\item
+  Test for the null hypothesis that \(\beta_1 \geq 0\). Report the
+  p-value and state your conclusion. \textbf{[2 points]}
+\item
+  Next, estimate the model
+  \[\text{Log Profits}_i=\beta_0+\beta_1 \text{Log Budget}_i +\varepsilon_i.\]
+  When creating the variables Log Profits and Log Budget, make sure that
+  movies with a Revenue or Budget of zero are assigned the value ``NA''.
+  Print a summary of your estimated model \textbf{[2 points]}
+\item
+  What is the estimated value of \(\beta_1\) and how do you interpet it?
+  \textbf{[2 points]}
+\item
+  Which model has better fit? The level-level model or the log-log
+  model? Explain. \textbf{[2 points]}
+\item
+  Who do you think is correct? Bob or Chantal? What would you advise the
+  movie studio to do? \textbf{[2 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\emph{step c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\emph{step d}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{logprofits }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{profits)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in log(movies5$profits): NaNs produced
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{logbudget }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{budget)}
+
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{logprofits[movies5}\SpecialCharTok{$}\NormalTok{revenue }\SpecialCharTok{==} \DecValTok{0} \SpecialCharTok{|}\NormalTok{ movies5}\SpecialCharTok{$}\NormalTok{budget }\SpecialCharTok{==} \DecValTok{0}\NormalTok{] }\OtherTok{\textless{}{-}} \ConstantTok{NA}
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{logbudget[movies5}\SpecialCharTok{$}\NormalTok{revenue }\SpecialCharTok{==} \DecValTok{0} \SpecialCharTok{|}\NormalTok{ movies5}\SpecialCharTok{$}\NormalTok{budget }\SpecialCharTok{==} \DecValTok{0}\NormalTok{] }\OtherTok{\textless{}{-}} \ConstantTok{NA}
+
+\NormalTok{mod\_log }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(logprofits }\SpecialCharTok{\textasciitilde{}}\NormalTok{ logbudget, }\AttributeTok{data =}\NormalTok{ movies5)}
+
+\FunctionTok{summary}\NormalTok{(mod\_log)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = logprofits ~ logbudget, data = movies5)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -7.2956 -0.6776  0.1751  0.8725  3.1581 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -6.16782    0.76937  -8.017 9.01e-15 ***
+## logbudget    0.58680    0.04482  13.093  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.346 on 461 degrees of freedom
+##   (446 observations deleted due to missingness)
+## Multiple R-squared:  0.271,  Adjusted R-squared:  0.2695 
+## F-statistic: 171.4 on 1 and 461 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The estimated model is:
+
+Log Profitsᵢ = β₀ + β₁ Log Budgetᵢ + εᵢ
+
+The estimated coefficient for Log Budget is approximately 0.587. The R²
+is approximately 0.271.
+
+\emph{step e}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(mod\_log)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = logprofits ~ logbudget, data = movies5)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -7.2956 -0.6776  0.1751  0.8725  3.1581 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -6.16782    0.76937  -8.017 9.01e-15 ***
+## logbudget    0.58680    0.04482  13.093  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.346 on 461 degrees of freedom
+##   (446 observations deleted due to missingness)
+## Multiple R-squared:  0.271,  Adjusted R-squared:  0.2695 
+## F-statistic: 171.4 on 1 and 461 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The estimated value of β₁ is 0.587. Since this is a log-log model, a 1\%
+increase in budget is associated with approximately a 0.59\% increase in
+profits, on average.
+
+\emph{step f}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{profits }\OtherTok{\textless{}{-}}\NormalTok{ movies5}\SpecialCharTok{$}\NormalTok{revenue }\SpecialCharTok{{-}}\NormalTok{ movies5}\SpecialCharTok{$}\NormalTok{budget}
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{logprofits }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{profits)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in log(movies5$profits): NaNs produced
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{logprofits[movies5}\SpecialCharTok{$}\NormalTok{profits }\SpecialCharTok{\textless{}=} \DecValTok{0}\NormalTok{] }\OtherTok{\textless{}{-}} \ConstantTok{NA}
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{logbudget }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{budget)}
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{logbudget[movies5}\SpecialCharTok{$}\NormalTok{budget }\SpecialCharTok{\textless{}=} \DecValTok{0}\NormalTok{] }\OtherTok{\textless{}{-}} \ConstantTok{NA}
+\NormalTok{mod\_log }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(logprofits }\SpecialCharTok{\textasciitilde{}}\NormalTok{ logbudget, }\AttributeTok{data =}\NormalTok{ movies5)}
+\NormalTok{common }\OtherTok{\textless{}{-}} \SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{logprofits) }\SpecialCharTok{\&} \SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{logbudget)}
+\NormalTok{level\_common }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(profits }\SpecialCharTok{\textasciitilde{}}\NormalTok{ budget, }\AttributeTok{data =}\NormalTok{ movies5[common,])}
+\FunctionTok{summary}\NormalTok{(level\_common)}\SpecialCharTok{$}\NormalTok{r.squared}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3292457
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{backtransformed }\OtherTok{\textless{}{-}} \FunctionTok{exp}\NormalTok{(}\FunctionTok{predict}\NormalTok{(mod\_log))}
+\FunctionTok{cor}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{profits[common], backtransformed)}\SpecialCharTok{\^{}}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3117809
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+R\^{}2 isn't directly comparable since the two models have different
+dependent variables. Putting both on the same scale, level-level gets
+0.329 and log-log gets 0.312, so level-level fits slightly better.
+
+\emph{step g}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t\_value }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(mod\_log)}\SpecialCharTok{$}\NormalTok{coefficients[}\StringTok{"logbudget"}\NormalTok{, }\StringTok{"t value"}\NormalTok{]}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{df.residual}\NormalTok{(mod\_log)}
+
+\NormalTok{p\_value }\OtherTok{\textless{}{-}} \FunctionTok{pt}\NormalTok{(t\_value, }\AttributeTok{df =}\NormalTok{ df, }\AttributeTok{lower.tail =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{p\_value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The p-value is approximately 1.000. Therefore, we do not reject the null
+hypothesis that β₁ ≥ 0. There is no evidence that the relationship
+between budget and profits is negative.
+
+2
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Make a plot with a 95\% confidence interval with the mean log of
+  budget on the y-axis, and whether the first actor of the movie is male
+  or female on the x-axis. What do you conclude? \textbf{[2 points]}
+\item
+  Estimate the following simple OLS model:
+  \(log(budget)_i=\beta_0+\beta_1 \text(FirstActorMale)_i + \varepsilon_i.\)
+  Is the estimated coefficient for \(\beta_1\) significantly different
+  from zero? How do you interpret its estimate, and how does this relate
+  to your conclusion in 2a? \textbf{[2 points]}
+\item
+  Now, have a close look at your data frame. Can you find any instances
+  of male first actors who are wrongly labeled as being female, or vice
+  versa? What would such mislabelling mean for the coefficient you
+  estimated under 2b? \textbf{[2 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\emph{step c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{unique}\NormalTok{(movies5[, }\FunctionTok{c}\NormalTok{(}\StringTok{"first\_actor"}\NormalTok{,}\StringTok{"first\_actor\_gender"}\NormalTok{)])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                  first_actor first_actor_gender
+## 1               Shari Albert             female
+## 2                 Seth Rogen               male
+## 3             Taylor Lautner             female
+## 4               Jim Caviezel               male
+## 5                 William H.               male
+## 6           Richard Dreyfuss               male
+## 7            Parminder Nagra               male
+## 8                  Ed Skrein               male
+## 9                    Dr. Dre               <NA>
+## 10                Bill Nighy               male
+## 11                Tom Cruise               male
+## 12             Mark Wahlberg               male
+## 13              Erin O'Brien             female
+## 14                Chris Pine               male
+## 15              Akshay Kumar               male
+## 16          Pel\\u00e9 Franz               <NA>
+## 17               Lou Diamond             female
+## 18              Emile Hirsch               male
+## 19             Kate Bosworth             female
+## 20           Jean-Claude Van               <NA>
+## 21       Ricardo Dar\\u00edn               male
+## 22             Audrey Tautou             female
+## 23                 Zac Efron               male
+## 24               Kane Hodder               male
+## 25                Jack Black               male
+## 26              Keanu Reeves               male
+## 27               Jena Malone             female
+## 28         Jennifer Connelly             female
+## 29             Molly Shannon             female
+## 30               Sophie Rois             female
+## 31            Drew Barrymore               male
+## 32              Jeff Bridges               male
+## 33            Morgan Freeman             female
+## 34             Josh Hartnett               male
+## 35               Thomas Jane               male
+## 36           Kristen Stewart             female
+## 37              Richard Gere               male
+## 38             Allison Paige             female
+## 39            Rachel McAdams             female
+## 40               Tim Robbins               male
+## 41                Will Smith               male
+## 42            Katrina Bowden             female
+## 43           Michael Jackson               male
+## 44                 Tom Hanks               male
+## 45         Christopher Scott               male
+## 46          Alexander Siddig               male
+## 47             Wesley Snipes               male
+## 48        Adrienne Pickering             female
+## 49             Jonathan Blow               male
+## 50              Paula Patton             female
+## 51                   LL Cool               <NA>
+## 52         Matthew Broderick               male
+## 53            Natalie Dormer             female
+## 54             Aaron Eckhart               male
+## 55            Eli Marienthal               male
+## 56                Pat Morita             female
+## 57               Steve Irwin               male
+## 58                Mila Kunis             female
+## 59               Lewis Black               male
+## 60           Kathleen Turner             female
+## 61           Nathaniel Brown               male
+## 62             Jennifer Hale             female
+## 63               Josh Brolin               male
+## 64             Stephen Dorff               male
+## 65              Eddie Murphy               male
+## 66           Woody Harrelson               male
+## 67                Ben Youcef               male
+## 68               Dan Stevens               male
+## 69     Ren\\u00e9e Zellweger               <NA>
+## 70        Sylvester Stallone               male
+## 71              Adam Carolla               male
+## 72            Steve Whitmire               male
+## 73              Bruce Willis               male
+## 74             Ioan Gruffudd               male
+## 75            Christian Bale               male
+## 76               Eric Mabius               male
+## 77                Hugh Grant               male
+## 78       Matthew McConaughey               male
+## 79               Naomi Watts             female
+## 80              Jess Weixler               male
+## 81                  Tony Jaa               male
+## 82              Ryan Gosling               male
+## 83           Jake Gyllenhaal               male
+## 84              Adam Sandler               male
+## 85             Marlon Wayans               male
+## 86               Paul Walker               male
+## 87                  Teo Halm               male
+## 88            Ryan Phillippe               male
+## 89               Bill Paxton               male
+## 90           Robert Fontaine               male
+## 92               David Spade               male
+## 93            Robert Redford               male
+## 94               James Woods               male
+## 95            Channing Tatum               male
+## 97               Rocky Mayor               male
+## 99              Kevin Spacey               male
+## 101            Frankie Muniz               male
+## 102          Keira Knightley             female
+## 103             Chyler Leigh             female
+## 104         Juliette Binoche             female
+## 105    Roselyn S\\u00e1nchez             female
+## 106             Rebecca Hall             female
+## 108              Johnny Depp               male
+## 109              Chris Klein               male
+## 110               Tobin Bell               male
+## 111          Jennifer Garner             female
+## 112                Samuel L.               male
+## 113                Billy Bob               male
+## 114              Mimi Rogers             female
+## 115               Matt Damon               male
+## 116           Brendan Fraser               male
+## 118             Sean Connery               male
+## 120                  John C.               male
+## 121           Ricky Schroder               male
+## 122               Jim Carrey               male
+## 123             Peter Sallis               male
+## 124            Warren Beatty               male
+## 125           Sarah Michelle             female
+## 127           Hrithik Roshan               male
+## 129    Michelle Trachtenberg             female
+## 130           Pierce Brosnan               male
+## 131           Josh Zuckerman               male
+## 133               Val Kilmer               male
+## 134            Lennie Loftin               male
+## 136          Gwyneth Paltrow             female
+## 137         Jennifer Aniston             female
+## 139                Brad Pitt               male
+## 140             Barney Clark               male
+## 141              Ed Speleers               male
+## 142            James Nesbitt               male
+## 144         Antonio Banderas               male
+## 145          Michael Shannon               male
+## 146                Omar Epps               male
+## 147               Mia Farrow             female
+## 148            Kevin Costner               male
+## 149             Rachel Weisz             female
+## 151             Denis Lavant               male
+## 152                 Jude Law               male
+## 153               Devon Sawa               male
+## 155          Anthony Hopkins               male
+## 156              Scott Elrod               male
+## 157               Mike Myers               male
+## 161              Dan Zukovic               male
+## 162             Brady Corbet               male
+## 163        Michelle Pfeiffer             female
+## 164               Jane Fonda             female
+## 165              Liam Neeson               male
+## 167                Kad Merad               <NA>
+## 171              Sacha Baron             female
+## 172            Angela Bettis             female
+## 173             Alex Vincent               male
+## 174          Martin Lawrence               male
+## 175              Eric Stoltz               male
+## 176      G\\u00e9rard Jugnot               <NA>
+## 177            Amber Tamblyn             female
+## 178               Method Man               <NA>
+## 179            John Travolta               male
+## 180         Daniel Radcliffe               male
+## 183             Hugh Jackman               male
+## 184         Madeline Carroll             female
+## 185              Will Arnett               male
+## 186           Jennifer Lopez             female
+## 187             Peter Mullan               male
+## 188             Eminem Mekhi               <NA>
+## 190           Krysten Ritter             female
+## 191           Sandra Bullock             female
+## 192              Oscar Isaac               male
+## 193           Lambert Wilson               male
+## 194              Ben Stiller               male
+## 196             Gene Hackman               male
+## 197          Jesse Eisenberg               male
+## 198             Sam Rockwell               male
+## 199             Kirk Cameron               male
+## 201        Vincent D'Onofrio               male
+## 203               Aaron Kwok               male
+## 204               Tom Arnold               male
+## 205            Jaime Pressly               male
+## 206            Anton Yelchin               male
+## 207     Dami\\u00e1n Delgado               <NA>
+## 208              Dan Aykroyd               male
+## 209              Marc Donato               male
+## 210           Kirby Heyborne               male
+## 211            Casey Affleck               male
+## 212               Bill Hader               male
+## 213             Kurt Russell               male
+## 214             Meryl Streep             female
+## 215           George Clooney               male
+## 217    Fran\\u00e7ois Cluzet               <NA>
+## 218             Aaron Abrams               male
+## 219                     <NA>               <NA>
+## 220             Stephen Lang               male
+## 221               Anna Faris             female
+## 222            Frank Vincent               male
+## 223       Benjamin Dickinson               male
+## 224           Angelina Jolie             female
+## 227          Michael Douglas               male
+## 228          Patrick Stewart               male
+## 229             Sarah Polley             female
+## 231              Ben Affleck               male
+## 232           Philip Seymour               male
+## 233             Ray Winstone               male
+## 234               Jeff Fahey               male
+## 235          Macaulay Culkin               male
+## 236          Kenneth Branagh               male
+## 237             Noah Schnapp               male
+## 238               Drake Bell               male
+## 239           Michael Keaton               male
+## 241        Denzel Washington               male
+## 242          Viggo Mortensen               male
+## 243           Mo'Nique Jimmy               <NA>
+## 244            Steve Buscemi               male
+## 245              Adam Rifkin               male
+## 247               Chang Chen               male
+## 248            Julia Roberts             female
+## 249                Alan King               male
+## 250            Gerard Butler               male
+## 251        Martijn Lakemeier               male
+## 256               Jamie Bell             female
+## 258         Daniel Day-Lewis               male
+## 259               Jamie Foxx             female
+## 260                Megan Fox             female
+## 262               Erin Kelly             female
+## 263            Alexis Bledel             female
+## 268           Patrick Wilson               male
+## 269               Paul Gross               male
+## 270        Christopher Toler               male
+## 271               Ben Foster               male
+## 273          Chris Hemsworth               male
+## 274         Fernanda Andrade             female
+## 275                Dany Boon               male
+## 276               Louis C.K.               male
+## 279         Johnathan Hurley               male
+## 280          Dorothy Tristan             female
+## 281           Ashton Kutcher               male
+## 282            Robert Downey               male
+## 283             Daniel Craig               male
+## 284           Michael Gambon               male
+## 286             Paul Bettany               male
+## 287        Marie F\\u00e9ret             female
+## 288              Owen Wilson               male
+## 290             John Corbett               male
+## 291             Steve Carell               male
+## 292                 Meg Ryan             female
+## 293          Joaquin Phoenix               male
+## 295           David Duchovny               male
+## 296  Quvenzhan\\u00e9 Wallis               <NA>
+## 297                 Ice Cube               <NA>
+## 298              Kevin James               male
+## 299            Ewan McGregor               male
+## 300            Mickey Rourke               male
+## 301      Katherine Waterston             female
+## 302             Sam Hennings               male
+## 304               Emily Roya             female
+## 307              Scott Adsit               male
+## 309             Hilary Swank             female
+## 311                  John G.               male
+## 313           Brian Bosworth               male
+## 314           Keir Gilchrist               male
+## 315          Benjamin Walker               male
+## 317              Marc Singer               male
+## 318              Ian Ziering               male
+## 320              Gemma Jones             female
+## 321          Charlize Theron             female
+## 322            Jeremy Renner               male
+## 323            Chris Warren,               male
+## 324              Laura Regan             female
+## 328            Albert Brooks               male
+## 330            Alex Kendrick               male
+## 331           Nicholas Hoult               male
+## 332             Heath Ledger               male
+## 335              Tyler Perry               male
+## 336              Stephen Rea               male
+## 337                Sam Riley               male
+## 338                 Tom Kane               male
+## 340           Michael Jordan               male
+## 341           Kimberly Elise             female
+## 342             Ohad Knoller               male
+## 343                 Sid Haig               male
+## 345           Paul Schneider               male
+## 346           Alexa PenaVega             female
+## 347              Alicia Witt             female
+## 348       Chiara Mastroianni             female
+## 349       Miguel \\u00c1ngel               male
+## 350                  Guo Tao               <NA>
+## 352          Natalie Portman             female
+## 353      Christopher Plummer               male
+## 354          Leelee Sobieski             female
+## 355          Kelly Macdonald             female
+## 362              Larry David               male
+## 366             Jeremy Piven               male
+## 367            Charlie Sheen               male
+## 368               Kip Pardue               male
+## 370              John Hawkes               male
+## 371            Anne Hathaway             female
+## 372         Alden Ehrenreich               male
+## 373            Patrick Huard               male
+## 374            Abbie Cornish             female
+## 376          Forest Whitaker               male
+## 377             Eva Longoria             female
+## 378            Danny McBride               male
+## 379               Vin Diesel               male
+## 380            Jason Statham               male
+## 381            Steven Strait               male
+## 382               Alan Tudyk               male
+## 383               Judi Dench             female
+## 385           Robert Carlyle               male
+## 386            Harrison Ford               male
+## 387           Susan Sarandon             female
+## 389             Ben Kingsley               male
+## 390         Terrence Jenkins               male
+## 392             Robin Tunney             female
+## 393        Manny P\\u00e9rez               male
+## 396            Vincent Gallo               male
+## 397               Chris Rock               male
+## 399              Kevin Kline               male
+## 402             Elias Koteas               male
+## 403             Jeff Daniels               male
+## 406                James Van               male
+## 407               Elina Abai             female
+## 408           Ron Livingston               male
+## 409             Will Ferrell               male
+## 413           Emily Browning             female
+## 415          Michael Nyqvist               male
+## 416            Rickson Tevez               male
+## 418           Milla Jovovich             female
+## 420            Michael Moore               male
+## 423          Christina Ricci             female
+## 424             Tyrin Turner               male
+## 425             Indira Varma             female
+## 427             Danny DeVito               male
+## 428       Scarlett Johansson             female
+## 429              Andy Serkis               male
+## 430                Pam Grier             female
+## 432             Kristen Bell             female
+## 433                Eric Bana               male
+## 434            Russell Crowe               male
+## 435           David Arquette               male
+## 436         Catherine Keener             female
+## 437                Shad Moss               male
+## 439              Uma Thurman             female
+## 440                Al Pacino               male
+## 441              Klaus Maria               male
+## 442               Ari Folman               male
+## 443               Ray Romano               male
+## 444             Laura Linney             female
+## 445            Javier Bardem               male
+## 446       Ciar\\u00e1n Hinds               <NA>
+## 447              Matt Dillon               male
+## 448        Nicholas Turturro               male
+## 449               Tom Cullen               male
+## 450                Tommy Lee               male
+## 452              Ethan Hawke               male
+## 453              Jackie Chan             female
+## 454             Mira Sorvino             female
+## 455              Dana Snyder             female
+## 456             Mark Duplass               male
+## 459             Cameron Diaz               male
+## 460            Jensen Ackles               male
+## 462        Valerie Red-Horse             female
+## 463            Dan Futterman               male
+## 464            David Hewlett               male
+## 465              Jan Decleir             female
+## 466              Rob Corddry               male
+## 468              Buzz Aldrin               male
+## 469            Deon Richmond               male
+## 470           Dakota Johnson               male
+## 472         Shauna Macdonald             female
+## 473         Johnny Knoxville               male
+## 474              Jason Segel               male
+## 476               Clive Owen               male
+## 478                   Jet Li               male
+## 479               Mel Gibson               male
+## 480           Mick Partridge               male
+## 482             Vera Farmiga             female
+## 483          Chris O'Donnell               male
+## 485          Michelle Simone             female
+## 486 Joakim N\\u00e4tterqvist               male
+## 488           French Stewart               male
+## 490             James Franco               male
+## 491         Clovis Cornillac               male
+## 492          Wesley Jonathan               male
+## 493                Robert De               male
+## 495             Cuba Gooding             female
+## 496             Willem Dafoe               male
+## 499         Jonathan Winters               male
+## 500             Alec Baldwin               male
+## 503               Will Forte               male
+## 504       Casper Christensen               male
+## 506                Dev Patel               male
+## 507            Nicole Kidman             female
+## 508            Paul Giamatti               male
+## 509           Julianne Moore             female
+## 510            Emilia Clarke             female
+## 513            Daniel Henney               male
+## 515            Renee Leblanc             female
+## 516           Ellis Cashmore               male
+## 517             Anthony Wong               male
+## 521             Jake Johnson               male
+## 522          Stephen Dillane               male
+## 523           Julianne Hough             female
+## 524               Lori Petty             female
+## 526           Brenda Blethyn             female
+## 527              Jimi Mistry               male
+## 529        Aasheekaa Bathija               <NA>
+## 530    Arnold Schwarzenegger               male
+## 531            Taryn Manning             female
+## 532            Ralph Fiennes               male
+## 533              Chris Evans               male
+## 534         Timothy Olyphant               male
+## 535                Paul Rudd               male
+## 536                Tim Allen               male
+## 537           Brendan Cowell               male
+## 538          Whoopi Goldberg               <NA>
+## 541             Shia LaBeouf               male
+## 542           Columbus Short               male
+## 543               Jon Voight               male
+## 544     Aaron Taylor-Johnson               male
+## 547              Greg Speirs               male
+## 550                Cher Judi             female
+## 554        Kristen Quintrall             female
+## 556             Kyle Hoskins               male
+## 558                Joseph E.               male
+## 559          Madonna Antonio             female
+## 560               Michael B.               male
+## 561            Mark Thompson               male
+## 562           Angela Bassett             female
+## 564         Shirley MacLaine             female
+## 566             Sarah Butler             female
+## 567               Danny Dyer               male
+## 569           Heike Makatsch             female
+## 570             Olivia Cooke             female
+## 571             Nicolas Cage               male
+## 572              Nate Parker               male
+## 573                 Jodi Lyn             female
+## 575              Bob Hoskins               male
+## 577     Joseph Gordon-Levitt               male
+## 579                Lee Scott               male
+## 581            Anna Kendrick             female
+## 583             James Spader               male
+## 584              Woody Allen               male
+## 585           Takeshi Kitano               male
+## 586               Joan Allen             female
+## 587            Breckin Meyer               male
+## 588           Aaron Stanford               male
+## 591       Michael Fassbender               male
+## 593             Sanaa Lathan             female
+## 594            J.D. Williams               <NA>
+## 596           Mia Wasikowska             female
+## 597             Matt O'Leary               male
+## 598          Garrett Hedlund               male
+## 601              Kevin Bacon               male
+## 602           Cate Blanchett             female
+## 603              Jason Biggs               male
+## 604           Michael Clarke               male
+## 605              John Cusack               male
+## 606           Jack Nicholson               male
+## 607             Mike Mizanin               male
+## 608          Kate Beckinsale             female
+## 609              Robert Hill               male
+## 612             Neil Maskell               male
+## 613               Diego Luna               male
+## 614              Hilary Duff             female
+## 615          William Moseley               male
+## 616               Joel Moody               male
+## 617        Leonardo DiCaprio               male
+## 618              Benicio del               male
+## 619             Hallee Hirsh             female
+## 621                Rob Brown               male
+## 622         Terrance Zdunich               male
+## 626              Elijah Wood               male
+## 628              Lena Dunham             female
+## 629             Louis Brooke               male
+## 630              Larry Bagby               male
+## 631             Kate Winslet             female
+## 632                Emma Bell             female
+## 633           John Leguizamo               male
+## 634               Robin Shou             female
+## 637            Anna Chlumsky             female
+## 639            Colin Farrell               male
+## 640             Noomi Rapace             female
+## 641              Ashley Judd             female
+## 642          Britt Robertson               male
+## 643            Haley Bennett             female
+## 645             Stephen Chow               male
+## 648              Ben Browder               male
+## 649       Paula Garc\\u00e9s             female
+## 650             Julia Stiles             female
+## 651             Winona Ryder             female
+## 653             Jim Sturgess               male
+## 654          Katherine Heigl             female
+## 656                Tom Hardy               male
+## 657        Michelle Monaghan             female
+## 658             James McAvoy               male
+## 659           Elisabeth Shue             female
+## 661            Terence Stamp               male
+## 662                  Jake T.               male
+## 663         Freddie Highmore               male
+## 667           Bryan Cranston               male
+## 670            Matthew Perry               male
+## 671               Mark Adams               male
+## 674             Pierre Dulat               male
+## 677             Lauren Cohan             female
+## 678             Miles Teller               male
+## 679               Joe Marino               male
+## 680                  Al Gore               male
+## 681            Rob Schneider               male
+## 684               Loren Dean               male
+## 685              Ossie Davis             female
+## 686             Shawn Wayans               male
+## 689        Chlo\\u00eb Grace               <NA>
+## 692               Nick Nolte               male
+## 694              Jason Trost               male
+## 696           Bruce Campbell               male
+## 698             Steve Martin               male
+## 704              Halle Berry             female
+## 706            Eddie Griffin               male
+## 708         Melanie Griffith             female
+## 709          Cloris Leachman             female
+## 710            Jang Dong-gun               <NA>
+## 712        Michael Stuhlbarg               male
+## 713                John Cena               male
+## 715        Andy Garc\\u00eda               male
+## 716               Ray Liotta               male
+## 722              Brian Hooks               male
+## 724               Parry Shen               male
+## 726              Bobby Campo               male
+## 727         Adrienne Barbeau             female
+## 734            Jonathan Rhys               male
+## 735                Bob Dylan               male
+## 741        Jennifer Lawrence             female
+## 743            David Oyelowo               male
+## 745           Robin Williams             female
+## 748             Max Thieriot               male
+## 749        Elizabeth Berkley             female
+## 752             James Garner               male
+## 753             Kim Director             female
+## 754            Gabriel Macht               male
+## 755                 Craig T.               male
+## 759               Aamir Khan               male
+## 760           Liam Hemsworth               male
+## 761           Daniel Auteuil               male
+## 762              Chris Kelly               male
+## 765           Jimmy Shergill               male
+## 766              Ron Perlman               male
+## 767              Uday Chopra               male
+## 768        Richard Linklater               male
+## 769           Dwayne Johnson               male
+## 770            Rutina Wesley               <NA>
+## 773               Idris Elba               male
+## 775                Dane Cook               male
+## 779                Sean Penn               male
+## 780                John Hurt               male
+## 783                 Lisa Ray             female
+## 790              Kwak Do-won               <NA>
+## 792              Mandy Moore             female
+## 793           Freddie Prinze               male
+## 794          James Blackwell               male
+## 796              Zoe Saldana             female
+## 800            Jennifer Love             female
+## 801            Ruby Barnhill             female
+## 802             Linus Roache               male
+## 803          Samantha Mathis             female
+## 804             Mark Ruffalo               male
+## 808          Vanessa Paradis             female
+## 809  Dario No\\u017ei\\u0107               male
+## 812           Allison Miller             female
+## 813         Elizabeth Hurley             female
+## 814                Portia de             female
+## 815       Richard Farnsworth               male
+## 817            James Marsden               male
+## 818               Demi Moore             female
+## 819        Katie Featherston             female
+## 820             Chow Yun-fat               <NA>
+## 821         Kristen Connolly             female
+## 824              Kate Hudson             female
+## 828             Jodie Foster             female
+## 835          Vasily Stepanov               male
+## 837            Kirsten Dunst             female
+## 838               Bill Maher               male
+## 840                 Ed Asner               male
+## 843                 Nia Long             female
+## 845             Greg Kinnear               male
+## 848            Shereef Akeel               male
+## 849          Juan Jos\\u00e9               male
+## 855          Laurel Holloman             female
+## 856           Zachary Gordon               male
+## 858           Campbell Scott             female
+## 862              Viola Davis             female
+## 863            Brandon Bales               male
+## 868            Gabriel Byrne               male
+## 869            Ryan Reynolds               male
+## 872          Asa Butterfield               male
+## 875             Phil Vischer               male
+## 876          Daniel Buckland               male
+## 877        Michelle Williams             female
+## 878  Stellan Skarsg\\u00e5rd               male
+## 879         Frank Rautenbach               male
+## 881              Carol Block             female
+## 882      Christopher Lambert               male
+## 883          William Shatner               male
+## 884             Peter Coyote               male
+## 885           Olivia DeJonge             female
+## 887          Andrew Garfield               male
+## 890          Brianne Siddall             female
+## 891          Kate Greenhouse             female
+## 894              Jack Huston               male
+## 895           Melinda Clarke             female
+## 899         Michael Angarano               male
+## 906            Rashida Jones             female
+## 909              Anwar Congo               male
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+Yes, for example Jackie Chan and Morgan Freeman are labeled female, and
+Cameron Diaz is labeled male. This random mislabeling would bias the
+coefficient from 2b toward zero, since some movies end up in the wrong
+group.
+
+\section{Week 5}\label{week-5}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  Create a plot of the mean profits by month of release. Do you see any
+  indication that month of release matters to the profits of the movie?
+  \textbf{[2 points]}
+\item
+  Estimate an OLS model which has as dependent variable the log of
+  profits of a movie, and as independent variable the log of budget, a
+  dummy for whether the movie was released in english or not, and a
+  linear term for the month of release. Show a summary of the resulting
+  model and interpret each coefficient. \textbf{[4 points]}
+\item
+  Test for the hypothesis that the coefficient that belongs to month of
+  release is zero. \textbf{[2 points]}
+\item
+  Based on your plot in a.) do you consider the choice that month of
+  release enters the model linearly under b.) reasonable? Estimate a
+  specification that allows for a more flexible curve. In this new
+  specification, test for the null hypothesis that month of release does
+  not impact profits. This might require testing multiple terms at once.
+  \textbf{[4 points]}
+\item
+  One executive at the studio wants to time the release of the movie to
+  a specific month of the year such that they can maximize revenue.
+  Based on your model under d.), What would you advise the movie studio
+  regarding the timing of the release of the movie? \textbf{[2 points]}
+\end{enumerate}
+
+The movie studio that you work at is releasing a new movie in 2026. It
+will be an English-spoken Thriller movie with a budget of 40,000,0000.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Estimate a model that is able to predict the revenue of this movie.
+  Give its predicted revenue and include a 99\% prediction interval.
+  \textbf{[6 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{profits }\OtherTok{\textless{}{-}}\NormalTok{ movies5}\SpecialCharTok{$}\NormalTok{revenue }\SpecialCharTok{{-}}\NormalTok{ movies5}\SpecialCharTok{$}\NormalTok{budget}
+
+\NormalTok{month\_means }\OtherTok{\textless{}{-}} \FunctionTok{aggregate}\NormalTok{(profits }\SpecialCharTok{\textasciitilde{}}\NormalTok{ release\_month,}
+                         \AttributeTok{data =}\NormalTok{ movies5,}
+                         \AttributeTok{FUN =}\NormalTok{ mean,}
+                         \AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+
+\FunctionTok{plot}\NormalTok{(month\_means}\SpecialCharTok{$}\NormalTok{release\_month,}
+\NormalTok{     month\_means}\SpecialCharTok{$}\NormalTok{profits,}
+     \AttributeTok{type =} \StringTok{"b"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Month of release"}\NormalTok{,}
+     \AttributeTok{ylab =} \StringTok{"Mean profits"}\NormalTok{,}
+     \AttributeTok{main =} \StringTok{"Mean profits by month of release"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment2_files/Assignment2_files/figure-latex/unnamed-chunk-34-1.pdf}}
+
+\textbf{Your Answer:}
+
+The plot shows that average profits vary across the months. June and
+November have relatively high average profits, while September\\
+has relatively low average profits. This suggests that the month of
+release may matter for movie profits.
+
+\emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{english }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{original\_language }\SpecialCharTok{==} \StringTok{"en"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+
+\NormalTok{mod\_month }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(logprofits }\SpecialCharTok{\textasciitilde{}}\NormalTok{ logbudget }\SpecialCharTok{+}\NormalTok{ english }\SpecialCharTok{+}\NormalTok{ release\_month,}
+                \AttributeTok{data =}\NormalTok{ movies5)}
+
+\FunctionTok{summary}\NormalTok{(mod\_month)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = logprofits ~ logbudget + english + release_month, 
+##     data = movies5)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -7.2036 -0.6992  0.1714  0.8886  2.9585 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)    6.96828    0.81336   8.567   <2e-16 ***
+## logbudget      0.57697    0.04488  12.857   <2e-16 ***
+## english        0.72135    0.34411   2.096   0.0366 *  
+## release_month  0.02106    0.01836   1.147   0.2519    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.34 on 459 degrees of freedom
+##   (446 observations deleted due to missingness)
+## Multiple R-squared:  0.2807, Adjusted R-squared:  0.276 
+## F-statistic: 59.72 on 3 and 459 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The coefficient for Log Budget is approximately 0.577. This means that a
+1\% increase in budget is associated with approximately a 0.58\%
+increase in profits, holding the other variables constant.
+
+The coefficient for English is approximately 0.721. This means that
+English-language movies have approximately 106\% higher profits than
+non-English movies, holding budget and release month constant.
+
+The coefficient for Release Month is approximately 0.021. This means
+that moving one month later is associated with approximately a 2.1\%
+increase in profits, holding budget and language constant.
+
+\emph{step c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(mod\_month)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = logprofits ~ logbudget + english + release_month, 
+##     data = movies5)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -7.2036 -0.6992  0.1714  0.8886  2.9585 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)    6.96828    0.81336   8.567   <2e-16 ***
+## logbudget      0.57697    0.04488  12.857   <2e-16 ***
+## english        0.72135    0.34411   2.096   0.0366 *  
+## release_month  0.02106    0.01836   1.147   0.2519    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.34 on 459 degrees of freedom
+##   (446 observations deleted due to missingness)
+## Multiple R-squared:  0.2807, Adjusted R-squared:  0.276 
+## F-statistic: 59.72 on 3 and 459 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The p-value for the release month coefficient is approximately 0.252.
+Since this is greater than 0.05, we do not reject the null hypothesis
+that the coefficient of release month is zero. Therefore, there is no
+statistically significant evidence that release month has a linear
+effect on profits.
+
+\emph{step d}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies5}\SpecialCharTok{$}\NormalTok{english }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(movies5}\SpecialCharTok{$}\NormalTok{original\_language }\SpecialCharTok{==} \StringTok{"en"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{mod\_flex }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(logprofits }\SpecialCharTok{\textasciitilde{}}\NormalTok{ logbudget }\SpecialCharTok{+}\NormalTok{ english }\SpecialCharTok{+}\NormalTok{ release\_month }\SpecialCharTok{+} \FunctionTok{I}\NormalTok{(release\_month}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{), }\AttributeTok{data =}\NormalTok{ movies5)}
+\NormalTok{mod\_nomonth }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(logprofits }\SpecialCharTok{\textasciitilde{}}\NormalTok{ logbudget }\SpecialCharTok{+}\NormalTok{ english, }\AttributeTok{data =}\NormalTok{ movies5)}
+\FunctionTok{anova}\NormalTok{(mod\_nomonth, mod\_flex)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Model 1: logprofits ~ logbudget + english
+## Model 2: logprofits ~ logbudget + english + release_month + I(release_month^2)
+##   Res.Df    RSS Df Sum of Sq      F Pr(>F)
+## 1    460 826.10                           
+## 2    458 822.38  2    3.7179 1.0353  0.356
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+Profits vary a lot by month in the plot from a) (June averages 123m,
+September only \$17m), so a straight line might not fit well. Testing
+month and month\^{}2 jointly gives F = 1.04, p = 0.356, so month has no
+significant effect once budget and language are in the model.
+
+\emph{step e}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Based on the model in (d), I wouldnt advise selecting a specific release
+month. once budget and language are accounted for, timing shows no real
+effect on profits. The pattern that summer and November releases look
+most profitable could mostly be because studios have already scheduled
+their biggest most expensive English-language films for those periods.
+
+\emph{step f}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{thrillers }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(movies5, genre }\SpecialCharTok{==} \StringTok{"Thriller"}\NormalTok{)}
+\NormalTok{thrillers }\OtherTok{\textless{}{-}}\NormalTok{ thrillers[thrillers}\SpecialCharTok{$}\NormalTok{revenue }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{, ]}
+\NormalTok{mod\_thriller }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\FunctionTok{log}\NormalTok{(revenue) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ logbudget }\SpecialCharTok{+}\NormalTok{ english, }\AttributeTok{data =}\NormalTok{ thrillers)}
+
+\NormalTok{newmovie }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{logbudget =} \FunctionTok{log}\NormalTok{(}\DecValTok{40000000}\NormalTok{), }\AttributeTok{english =} \DecValTok{1}\NormalTok{)}
+\FunctionTok{predict}\NormalTok{(mod\_thriller, }\AttributeTok{newdata =}\NormalTok{ newmovie, }\AttributeTok{interval =} \StringTok{"prediction"}\NormalTok{, }\AttributeTok{level =} \FloatTok{0.99}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        fit      lwr      upr
+## 1 18.08614 13.16505 23.00724
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{exp}\NormalTok{(}\FunctionTok{predict}\NormalTok{(mod\_thriller, }\AttributeTok{newdata =}\NormalTok{ newmovie, }\AttributeTok{interval =} \StringTok{"prediction"}\NormalTok{, }\AttributeTok{level =} \FloatTok{0.99}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        fit    lwr        upr
+## 1 71566843 521804 9815587435
+\end{verbatim}
+
+The predicted revenue is about 71.5 million, with a 99\% prediction
+interval of roughly 520,000 to 9.8 billion. The interval is extremely
+wide because theres a lot of variation in movie revenue than just budget
+and language.
+
+\end{document}
