@@ -352,7 +352,7 @@ pop_sd
 
 **Your Answer:**
 
-The 99% CI is [101.64, 110.75], which is wider than in 1a. This is because the sd of runtime for all movies (19.91) is bigger than the sd of only the thrillers (15.10), and that matters more than the smaller z critical value.
+The 99% CI is [101.64, 110.75], which is wider than in 1a. This is because the sd of runtime for all movies (19.91) is bigger than the sd of only the thrillers (15.10), which matters more than the smaller z critical value.
 
 2
 
