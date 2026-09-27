@@ -3,11 +3,11 @@ title: "QRM II Graded Assignment 2"
 author: 'Group 17: Omar Zakkouralashy, Anna Olaru, Nando Fredricks, Floris Hemink '
 date: "`r format(Sys.Date(), '%d-%m-%Y')`"
 output:
+  word_document: default
   html_document:
     df_print: paged
   pdf_document:
     number_sections: true
-  word_document: default
 subtitle: Period 1, 2026
 header-includes:
 - "\\setcounter{section}{-1}"
