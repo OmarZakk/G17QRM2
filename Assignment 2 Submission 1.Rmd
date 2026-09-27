@@ -1,0 +1,501 @@
+---
+title: "QRM II Graded Assignment 2"
+author: 'Group 17: Omar Zakkouralashy, Anna Olaru, Nando Fredricks, Floris Hemink '
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
+output:
+  word_document: default
+  pdf_document:
+    number_sections: true
+  html_document:
+    df_print: paged
+subtitle: Period 1, 2026
+header-includes:
+- "\\setcounter{section}{-1}"
+- |
+  \usepackage{fvextra}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+    showspaces = false,
+    showtabs = false,
+    breaklines,
+    commandchars=\\\{\}
+format:
+  html:
+    code-overflow: wrap
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.height = 2.8)
+```
+
+# Introduction
+
+This assignment is to be completed in groups of 4-5. Further, all students in your group need to be assigned to the same R tutorial group (Friday's tutorial). You can sign yourself up for a group on Canvas. Please do so \textbf{before the start of your first R tutorial on Friday September 4th.} You can use the Discussion Board in Canvas if you do not have a group yet or if your group is incomplete.
+
+The assignment has 5 parts, and each part corresponds to the course material of that week (with the exclusion of week 6, for which there is no R programming material).
+
+You are supposed to hand in these assignments on Canvas at the following dates:
+
+- **Deadline 1** *Sunday September 27th, at 23:59pm*: you are supposed to hand in weeks 1, 2, and 3 of this assignment. This will determine 18% of your overall course grade
+- **Deadline 2** *Sunday October 11th, at 23:59pm*: you are supposed to hand in weeks 4, and 5 of this assignment. This will determine 12% of your overall course grade
+
+The R tutorials (each Friday) will consist of two halves. During the first half, you will discuss the tutorial exercises. These can be downloaded separately from Canvas. During the second half, you can work on this graded assignment within your own group. The purpose is that you find out how to work with R for doing statistical analyses by yourself. The tutorial exercises are meant to teach you basic commands to get you started, but to answer the problem sets in this assignment, you might need to research your own solutions, and use functions and commands not described in the tutorial exercises. Learning how to solve your own research problems is integral part of learning R. When you and your group get stuck on how to approach an exercise, the hierarchy in finding your way is as follows:
+
+- use the concepts from the tutorial exercises;
+- use the cheat sheets available on Canvas;
+- use Google, YouTube, StackOverflow, or another website;
+- ask the teacher.
+
+
+The use of generative AI is \textbf{not} permitted and may result in a grade of 0. See the AI protocol in the course manual for details.
+To answer the assignment, you can simply fill out this R markdown document. There are designated places which you can fill with R code. There are also designated spaces for you to answer each question. Often, the structure of an answer will be as follows. First, you type the R code in the designated box. This will show how you analyzed the data to get the answer to the question. Below the box for the R code, you will then summarize your answer to the question, i.e. what are the conclusions that you draw from the data analysis?
+
+When handing in, you are supposed to submit this .Rmd file, and a knitted version of this document. You can knit this document to pdf, word, or html. Knitting to pdf requires you to have a .tex distribution installed on your computer. Knitting to Word requires you to have Word installed.
+
+The exercises are designed such that you should be able to finish the majority of them during the tutorial each week. If you are not able to finish them fully during that time, you are expected to work on it in your own time using the computers on campus or your own device. It is best to meet as a group in-person when working together. If you want to work remotely, github is a good platform to guarantee smooth collaboration. Alternatively, you can email this .Rmd file back and forth to one another as a group, but this is not recommended as it is more cumbersome.
+
+We encourage you to keep your code blocks, printing statements, and final answers, as short as possible. In any case, there is a page limit of 6 pages per week, which encompasses the total length of this document which consists of the questions, your coding lines, and your answers. When your answers to questions of the respective week exceed this page limit, they will not be graded, resulting in zero points.
+
+Each week consists of 1, 2, or 3 subquestions. The total amount of points you can earn per week is 20 points.
+
+# Week 1
+
+1.  Find the dataset “movies5.tsv” on Canvas. Describe your data set: How many observations does it have. How many variables are there? How many subjects? What consists of a subject? \textbf{[4 points]}
+
+```{r}
+movies5<-read.table("movies5.tsv",sep="\t", header=TRUE )
+dim(movies5)
+nrow(movies5)
+ncol(movies5)
+```
+
+**Your Answer:**
+
+The dataset has 909 observations and 19 variables. Each observation is one movie, so a subject is a single movie.
+
+2.  Which of the following types of variables are present in your data set? (i) nominal; (ii) ordinal; (iii); interval; (iv) ratio. If present, name one example of such a variable present in your data set. \textbf{[4 points]}
+
+```{r}
+summary(movies5)
+
+      
+```
+
+**Your Answer:**
+
+The dataset has nominal (e.g. genre), interval (e.g. vote_average), and ratio (e.g. budget, revenue, runtime) variables. No ordinal variable seems to be present.
+
+3.  A movie studio wants to know which types of movies give maximal profit. Perform the following steps to provide the movie studio with an analysis which corresponds to their request:
+
+<!-- -->
+
+a.  Create the variable profits as the revenue of a movie minus its budget. Report its mean, median, maximum, and minimum. \textbf{[2 points]}
+b.  Which movie has the highest profits in your data set and how much are these profits. Which movie has the lowest and how much are its profits? If multiple movies have the exact same highest or lowest profits, give only one example. \textbf{[2 points]}
+c.  Create a boxplot of the variable profits. Make sure it has an appropriate title, and appropriate titles and labels for the x- and y-axis. Give Q1, Q2, Q3, and Q4. What does this tell you about the nature of making money in the movies industry? \textbf{[2 points]}
+d.  Add a new variable to your data set the log of profits. When creating this variable, what happens to movies for which profits is zero or negative? What then happens when you calculate the mean of log of profits? \textbf{[2 points]}
+e.  For movies that have a profit of zero or less, replace log of profits with "NA". What is now the mean of log of profits? Create a boxplot for log of profits, again with an appropriate title, x- and y-axis labels. How does it compare to the boxplot you made under c.)? \textbf{[2 points]}
+f.  Create a scatterplot of with the runtime of movies on the x-axis and the average vote of movies on the y-axis. What do you conclude from the scatterplot? Are movies with a longer runtime considered worse or better by the audience, or does the audience not have a preference? Why do you think this is the case? \textbf{[2 points]}
+
+For each step, you should provide first all the code you used to answer the question and then formulate an answer using full sentences.
+
+*Step a*
+
+```{r}
+
+movies5$profits <- movies5$revenue - movies5$budget
+mean(movies5$profits)
+median(movies5$profits)
+max(movies5$profits)
+min(movies5$profits)
+
+```
+
+**Your Answer:**
+
+The mean profit is 56,284,650, the median is 2,942,221, the max is 1,082,730,962, and the min is -98,301,101.
+
+*Step b*
+
+```{r}
+
+movies5[which.max(movies5$profits), c("title", "profits")]
+movies5[which.min(movies5$profits), c("title", "profits"
+)]
+```
+
+**Your Answer:**
+
+The most profitable movie is Minions, with profits of 1,082,730,962. The least profitable is The 13th Warrior, with a loss of 98,301,101.
+
+*Step c*
+
+```{r}
+boxplot(movies5$profits,
+        main= "Boxplot of movie profits",
+        xlab= "movies5",
+        ylab= "Profits",
+        col= "lightblue")
+
+quantile(movies5$profits)
+
+```
+
+**Your Answer:**
+
+These quartiles show us that the movie industry is very risky and hit driven as the first quartile is negative, showing important losses. Meanwhile, the jump between the second and third quartile further supports the idea that only a few movies generate revenue for most of the industry. Q1 = -1,260,859, Q2 = 2,942,221, Q3 = 61,340,801, Q4 = 1,082,730,962
+
+*Step d*
+
+```{r}
+movies5$logprofits <- log(movies5$profits)
+
+mean(movies5$logprofits)
+
+```
+
+**Your Answer:**
+
+The mean of logprofits is NaN because the dataset contains zero and negative profits. The logarithm of zero results in -Inf, while the logarithm of a negative value results in NaN.
+
+*Step e*
+
+```{r}
+movies5$logprofits[movies5$profits <= 0] <- NA
+
+mean(movies5$logprofits, na.rm = TRUE)
+
+boxplot(movies5$logprofits,
+        
+        main = "Boxplot of Log Movie Profits",
+        
+        xlab = "Movies",
+        
+        ylab = "Log of Profits")
+
+```
+
+**Your Answer:**
+
+We replace zero and negative profits with NA so they are excluded from the calculation. The log transformation also reduces the influence of extremely high profits, resulting in a more balanced distribution. The mean of log profits is now 17.54.
+
+*Step f*
+
+```{r}
+library(ggplot2)
+ggplot(movies5, aes(x = runtime, y = vote_average)) +
+  geom_point() +
+  labs(
+    x = "Runtime (minutes)",
+    y = "Average vote",
+    title = "Runtime vs Average Movie Vote"
+  )
+  
+```
+
+**Your Answer**
+
+The scatterplot shows a weak positive relationship between runtime and average vote, so longer movies get slightly better ratings. The points are very spread out, so the audience doesn't have a strong preference. This is probably because people rate a movie more on the story and genre than on its length.
+
+# Week 2
+
+1 Is your dataset movies5.tsv the full population, or is it a sample of a larger population? If the latter, how would you describe the full population? \textbf{[4 points]}
+
+**Your Answer:**
+
+This is a sample of a larger population. The population would be all movies from 1990 to 2016 across all 19 languages. Here we only have a selection of movies and their ratings that try to represent a larger population.
+
+2
+
+a.  For which actor in your data set do you observe the most movies? \textbf{[2 points]}
+b.  What is the average revenue of the movie in which this actor plays and does the revenue lie above or below the revenue of an average movie according to your data set? \textbf{[2 points]}\
+c.  How trustworthy do you consider your conclusion to answer 2b? Use the term "law of large numbers" in your explanation. \textbf{[2 points]}
+
+*step a*
+
+```{r}
+names(sort(table(movies5$first_actor), decreasing = TRUE))[1] 
+```
+
+**Your Answer:**
+
+Bruce Willis is the most frequently appearing actor in the movie list.
+
+*step b*
+
+```{r}
+mean(movies5$revenue)
+bruce_movies <- movies5[which(movies5$first_actor == "Bruce Willis"), ]
+mean(bruce_movies$revenue)
+```
+
+**Your Answer:**
+
+The average revenues of all the movies in the given data is 88.846.315,00. Meanwhile the average revenue of all movies in the list starring Bruce Willis is 228.062.987,00 which lies over the average total mean.
+
+*step c*
+
+**Your Answer:**
+
+With only 8 observations, this average could easily be thrown off by one or two blockbusters like Armageddon. The law of large numbers says the sample mean gets closer to the true mean as sample size grows, so with n=8 we shouldn't put much weight on this number.
+
+3 For this question, you will assume that your data set is the full population.
+
+a.  Recode profits such that it is expressed in millions. What is the variance of the variable profits (in millions) in your data set? \textbf{[2 points]}
+b.  Create a new data set, called movies_sample. Make sure that it is a random sample of your data set of 25 movies. What is the variance of profits in this random sample? How does it compare to the variance of profits in 2a? \textbf{[2 points]}
+c.  In a for loop, create 100 different samples of 25 movies, as in b, and estimate the variance within each sample. Save the variance of each sample in a vector called sample_vars. So the first position of the vector would have the variance of the first sample, the second position the variance of the second sample, etc. Print the start of this vector. \textbf{[2 points]}
+d.  Summarize and make a histogram of sample_vars. What is the mean, standard deviation and shape of its distribution? \textbf{[2 points]}
+e.  In your opinion, is a sample of 25 movies sufficient to get a reliable estimate of the population variance of profits, using the sample variance? Explain? \textbf{[2 points]}
+
+*step a*
+
+```{r}
+movies5$profits <- movies5$revenue - movies5$budget
+
+movies5$profits <- movies5$profits / 1000000
+
+mean((movies5$profits - mean(movies5$profits))^2)
+
+```
+
+**Your Answer:**
+
+The variance of profits is 17,802.62.
+
+*step b*
+
+```{r}
+set.seed(123)
+movies_sample <- movies5[sample(1:nrow(movies5), 25), ]
+var(movies_sample$profits, na.rm = TRUE)
+```
+
+**Your Answer:**
+
+The variance of profits in the random sample is 20,712.43. This is higher than the variance of profits in the full dataset, which is 17,802.62. This difference is because the sample only contains 25 randomly selected movies.
+
+*step c*
+
+```{r}
+movies5$profits <- (movies5$revenue - movies5$budget) / 1000000
+
+sample_vars <- c()
+for (i in 1:100) {
+  movies_sample <- movies5[sample(1:nrow(movies5), 25), ]
+  sample_vars[i] <- var(movies_sample$profits)
+}
+head(sample_vars)
+```
+
+**Your Answer:**
+
+The variances range from about 1,800 to 75,000 across the 100 samples, since each sample of 25 picks up a different mix of high and low profit movies.
+
+*step d*
+
+```{r}
+summary(sample_vars)
+sd(sample_vars)
+hist(sample_vars,
+     main = "Histogram of Sample Variances",
+     xlab = "Sample Variance")
+```
+
+**Your Answer:** The 100 sample variances have a mean of about 17000 and a standard deviation of about 15400. The distribution is right skewed and the mean is above the median because some samples contain high profit movies which create large variance.
+
+*step e*
+
+```{r}
+
+```
+
+**Your Answer:** Not very reliable because the standard deviation of the sample variances is nearly as large as the mean so a sample of 25 can give a very different estimate from the true population variance.
+
+# Week 3
+
+For the next part of the assignment, assume that the movies in your data frame are a random sample of a larger population of movies.
+
+1
+
+a.  Create a new data set that only includes movies that are of the genre "Thriller". For these thriller movies, give a 99 percent confidence interval for the variable *runtime*. Interpret the result. \textbf{[2 points]}
+b.  Now, assume that the variance of *runtime* amongst thriller movies in your data is exactly the same as the variance of *runtime* in the population. Under this assumption, give a 99 percent confidence interval for the variable *runtime* among thriller movies. Interpret the result. Is you confidence interval wider or less wide than the one you found under question 1a? Why is that the case? \textbf{[2 points]}
+
+*step a*
+
+```{r}
+thrillers <- subset(movies5, genre == "Thriller")
+n <- nrow(thrillers)
+xbar <- mean(thrillers$runtime)
+s <- sd(thrillers$runtime)
+t_crit <- qt(0.995, df = n - 1)
+c(xbar - t_crit * s / sqrt(n), xbar + t_crit * s / sqrt(n))
+```
+
+**Your Answer:**
+
+The 99% confidence interval for the mean runtime of thriller movies is [102.69, 109.70] minutes. This means we are 99% confident that the true average runtime of all thriller movies in the population lies between roughly 102.7 and 109.7 minutes.
+
+*step b*
+
+```{r}
+pop_sd <- sd(movies5$runtime, na.rm = TRUE)
+z_crit <- qnorm(0.995)
+c(xbar - z_crit * pop_sd / sqrt(n), xbar + z_crit * pop_sd / sqrt(n))
+s
+pop_sd
+
+```
+
+**Your Answer:**
+
+The 99% CI is [101.64, 110.75], which is wider than in 1a. This is because the sd of runtime for all movies (19.91) is bigger than the sd of only the thrillers (15.10), and that matters more than the smaller z critical value.
+
+2
+
+a.  Using an appropriate five-step procedure, set up a test for the null hypothesis that the variance of runtime equals $500$. Clearly state your null hypothesis, alternative hypothesis your test statistic, your critical value, and your conclusion. \textbf{[2 points]}
+b.  For the validity of your test in 2a, what assumption about the distribution of revenue needs to hold? Make an appropriate plot to test this assumption. What do you conclude? \textbf{[2 points]}
+
+*step a*
+
+```{r}
+runtime <- na.omit(movies5$runtime)
+
+n  <- length(runtime)
+s2 <- var(runtime)          # sample variance
+
+
+chi2 <- (n - 1) * s2 / 500
+
+# Critical values (two-sided, alpha = 0.05)
+lower_crit <- qchisq(0.025, df = n - 1)
+upper_crit <- qchisq(0.975, df = n - 1)
+
+n
+s2
+chi2
+lower_crit
+upper_crit
+
+
+```
+
+**Your Answer:**
+
+1.  Hypotheses H(0): VAR = 500 H(1): VAR ≠ 500
+2.  Test statistic Chi² = (n − 1) · s² / SD(0)², which follows a chi-square distribution with n − 1 degrees of freedom under H(0).
+3.  Significance level and critical values alpha = 0.05, two-sided test with 908 degrees of freedom. The critical values are 826.39 and 993.40. We reject H(0) if Chi² \< 826.39 or Chi² \> 993.40.
+4.  Calculation n = 909, s² = 396.60 Chi² = 908 × 396.60 / 500 = 720.23
+5.  Conclusion Since 720.23 \< 826.39, the test statistic falls in the rejection region, so we reject H(0). At the 5% significance level, there is enough evidence that the variance of runtime is not equal to 500. The sample variance is lower, which suggests the true variance is smaller than 500.
+
+*step b*
+
+```{r}
+par(mfrow = c(1, 2))   # two plots side by side
+
+hist(runtime, breaks = 40, main = "Histogram of runtime", xlab = "Runtime (minutes)")
+
+qqnorm(runtime, main = "Normal QQ plot of runtime")
+qqline(runtime, col = "red")
+
+
+```
+
+**Your Answer:**
+
+The chi-square test for the variance is only valid if runtime is normally distributed. To check this, we made a histogram and a normal QQ plot of runtime.
+
+The histogram is roughly bell-shaped in the middle, but it is skewed to the right, with a longer tail of very long movies. There are also a few movies with a runtime of 0, which are probably missing values. In the QQ plot, the points follow the line in the middle but move away from it at both ends so long movies lie above the line and the 0-minute movies lie far below it.
+
+We conclude that runtime is not normally distributed, so the assumption behind the test in 2a does not hold.
+
+3.  There is an argument going on in the movie studio. *Bob* claims that they should make higher-quality movies, as this will bring in more profits. *Chantal* disagrees. She tells Bob that mediocre movies bring in the most profits. You are asked to advise on who is right.
+
+<!-- -->
+
+a.  Create a new variable called vote_average_rounded. Make sure this variable is the same as vote_average, but without any decimals (i.e., a 6.3 becomes a 6, a 8.7 an 8, etc.). Display a histogram of vote_average_rounded. \textbf{[2 points]}
+b.  Create a scatter plot with vote_average_rounded on the x axis and the mean of profits within each category of vote_average_rounded on the y-axis. Make sure it has an appropriate title, and appropriate titles and labels for the x- and y-axis. At which rating of movies are profits the highest? \textbf{[3 points]}
+c.  Recreate the scatter plot with year on the x axis and mean_profits on the y-axis, but now add bars around each point, indicating the 95% confidence interval. \textbf{[3 points]}
+d.  Write an advice to settle the argument between Bob and Chantal. \textbf{[4 points]}
+
+*step a*
+
+```{r}
+movies5$vote_average_rounded <- floor(movies5$vote_average)
+
+hist(movies5$vote_average_rounded,
+     main = "Distribution of Movie Ratings",
+     xlab = "Movie Rating",
+     ylab = "Frequency")
+
+```
+
+**Your Answer:**
+
+Most movies have a rating of 5, 6 or 7, and 6 is the most common rating.
+
+*step b*
+
+```{r}
+mean_profits <- aggregate(profits ~ vote_average_rounded,
+                          data = movies5,
+                          FUN = mean,
+                          na.rm = TRUE)
+
+plot(mean_profits$vote_average_rounded,
+     mean_profits$profits,
+     main = "Average Profits by Movie Rating",
+     xlab = "Movie Rating",
+     ylab = "Mean Profits",
+     pch = 19)
+
+mean_profits[which.max(mean_profits$profits), ]
+```
+
+**Your Answer:**
+
+Movies with a rating of 7 have the highest average profits, about 107.59 million.
+
+*step c*
+
+```{r, message=FALSE}
+
+library(dplyr)
+
+year_profits <- movies5 %>%
+  group_by(release_year) %>%
+  summarise(
+    mean_profits = mean(profits, na.rm = TRUE),
+    sd_profits = sd(profits, na.rm = TRUE),
+    n = sum(!is.na(profits))
+  ) %>%
+  mutate(
+    se = sd_profits / sqrt(n),
+    lower = mean_profits - qt(0.975, df = n - 1) * se,
+    upper = mean_profits + qt(0.975, df = n - 1) * se
+  )
+
+plot(year_profits$release_year,
+     year_profits$mean_profits,
+     main = "Mean Profits by Year (95% CI)",
+     xlab = "Year",
+     ylab = "Mean Profits (millions)",
+        pch = 19,
+   ylim = range(year_profits$lower, year_profits$upper))
+
+arrows(year_profits$release_year,
+       year_profits$lower,
+       year_profits$release_year,
+       year_profits$upper,
+       angle = 90,
+       code = 3,
+       length = 0.05)
+
+```
+
+**Your Answer:**
+
+The mean profits are different every year, but the confidence intervals are wide and mostly overlap, so there is no clear pattern over the years.
+
+*step d*
+
+**Your Answer:**
+  
+Chantal is not right, because movies with a rating of 5 make much less profit (about 33 million) than movies with a rating of 7 (about 108 million). Bob is partly right, since profits go up with the rating until 7, but the few movies rated 8 or 9 do not make more. We would advise the studio to aim for good movies, around a rating of 7.
