@@ -193,7 +193,7 @@ ggplot(movies5, aes(x = runtime, y = vote_average)) +
 
 **Your Answer**
 
-The scatterplot shows a weak positive relationship between runtime and average vote, so longer movies get slightly better ratings. The points are very spread out, so the audience doesn't have a strong preference. This is probably because people rate a movie more on the story and genre than on its length.
+The scatterplot shows a weak positive relationship between running time and average vote, so longer movies get better ratings. The points are very spread out, so the audience doesnt have a strong preference. Likely because people rate a movie more on the story and genre than just duration.
 
 # Week 2
 
@@ -201,7 +201,7 @@ The scatterplot shows a weak positive relationship between runtime and average v
 
 **Your Answer:**
 
-This is a sample of a larger population. The population would be all movies from 1990 to 2016 across all 19 languages. Here we only have a selection of movies and their ratings that try to represent a larger population.
+This is a sample of a larger population. The population would be all movies from 1990 to 2016 in the mentioned 19 languages. Here we only have a selection of movies and their ratings that should reflect the population.
 
 2
 
@@ -235,7 +235,7 @@ The average revenues of all the movies in the given data is 88.846.315,00. Meanw
 
 **Your Answer:**
 
-With only 8 observations, this average could easily be thrown off by one or two blockbusters like Armageddon. The law of large numbers says the sample mean gets closer to the true mean as sample size grows, so with n=8 we shouldn't put much weight on this number.
+Average is only 8 observations so its easily skewed by 1 or 2 blockbusters like Armageddon. The law of large numbers states that the sample mean converges to the true mean as the sample size grows, so we shouldnt put too much emphasis on this number with n=8.
 
 3 For this question, you will assume that your data set is the full population.
 
@@ -287,7 +287,7 @@ head(sample_vars)
 
 **Your Answer:**
 
-The variances range from about 1,800 to 75,000 across the 100 samples, since each sample of 25 picks up a different mix of high and low profit movies.
+The variances range from about 1,800 to 75,000 across the 100 samples because each sample of 25 picks up a different mix of high and low profit movies.
 
 *step d*
 
@@ -299,7 +299,7 @@ hist(sample_vars,
      xlab = "Sample Variance")
 ```
 
-**Your Answer:** The 100 sample variances have a mean of about 17000 and a standard deviation of about 15400. The distribution is right skewed and the mean is above the median because some samples contain high profit movies which create large variance.
+**Your Answer:** The 100 sample variances have a mean of about 17000 and a sd of about 15400. The distribution is right skewed and the mean is higher than the median because some samples have higher profit movies which cause larger variance.
 
 *step e*
 
@@ -307,7 +307,7 @@ hist(sample_vars,
 
 ```
 
-**Your Answer:** Not very reliable because the standard deviation of the sample variances is nearly as large as the mean so a sample of 25 can give a very different estimate from the true population variance.
+**Your Answer:** Not reliable because the sd of the sample variances is nearly as large as the mean so a sample of 25 can give a very different results from the actual population variance.
 
 # Week 3
 
@@ -331,7 +331,7 @@ c(xbar - t_crit * s / sqrt(n), xbar + t_crit * s / sqrt(n))
 
 **Your Answer:**
 
-The 99% confidence interval for the mean runtime of thriller movies is [102.69, 109.70] minutes. This means we are 99% confident that the true average runtime of all thriller movies in the population lies between roughly 102.7 and 109.7 minutes.
+The 99% confidence interval for the mean runtime of thriller movies is [102.69, 109.70] minutes. This means we are 99% confident that the real average runtime of all thriller movies in the population lies between roughly 102.7 and 109.7 minutes.
 
 *step b*
 
@@ -346,7 +346,7 @@ pop_sd
 
 **Your Answer:**
 
-The 99% CI is [101.64, 110.75], which is wider than in 1a. This is because the sd of runtime for all movies (19.91) is bigger than the sd of only the thrillers (15.10), and that matters more than the smaller z critical value.
+The 99% CI is [101.64, 110.75], which is wider than in 1a. This is because the sd of runtime for all movies (19.91) is bigger than the sd of only the thrillers (15.10)
 
 2
 
