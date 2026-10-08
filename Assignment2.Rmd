@@ -525,11 +525,12 @@ g.  Who do you think is correct? Bob or Chantal? What would you advise the movie
 
 ```{r}
 #WRITE YOUR CODE HERE
-
+model <- lm(profits ~ budget, data = movies5)
+summary(model)
 ```
 
 **Your Answer:**
-
+Profits= −3,307,000+1.830Budget
 Write your formulated response here.
 
 *step b*
@@ -540,18 +541,18 @@ Write your formulated response here.
 ```
 
 **Your Answer:**
-
+The estimated value of β₁ is 1.830. This implies that, on average, an additional €1 spent on the production budget is associated with a €1.83 increase in profits.
 Write your formulated response here.
 
 *step c*
 
 ```{r}
 #WRITE YOUR CODE HERE
-
+pt(20.802, df = 907, lower.tail = TRUE)
 ```
 
 **Your Answer:**
-
+The p-value is approximately 1, so we do not reject the null hypothesis that β₁ ≥ 0. There is no evidence that β₁ is negative. The results therefore support Chantal's claim.
 Write your formulated response here.
 
 *step d*
