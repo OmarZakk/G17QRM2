@@ -635,24 +635,45 @@ c.  Now, have a close look at your data frame. Can you find any instances of mal
 *step a*
 
 ```{r}
-#WRITE YOUR CODE HERE
+movies6 <- movies5[movies5$budget > 0, ]
+movies6$log_budget <- log(movies6$budget)
+movies6$FirstActorMale <- ifelse(movies6$first_actor_gender == "male", 1, 0)
+
+movies6 <- movies6[!is.na(movies6$FirstActorMale), ]   
+
+table(movies6$FirstActorMale, useNA = "ifany")   
+
+ggplot(movies6, aes(x = factor(FirstActorMale, labels = c("Female", "Male")),
+                    y = log_budget)) +
+  stat_summary(fun.data = mean_cl_normal, geom = "errorbar", width = 0.2) +
+  stat_summary(fun = mean, geom = "point", size = 3) +
+  scale_x_discrete(na.translate = FALSE) +
+  labs(title = "Mean Log Budget by Gender of First Actor",
+       x = "Gender of first actor",
+       y = "Mean log(budget)")
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The plot shows that movies with a male first actor have a higher budget (about 16.9) than movies with a female first actor (about 16.6), a difference of roughly 0.3 log points. However, the 95% confidence intervals of the two groups overlap. So the plot alone does not give clear evidence that budgets truly differ by the gender of the first actor. Male-led movies seem to have somewhat larger budgets on average, but the difference may be due to sampling variation. 
 
 *step b*
 
 ```{r}
-#WRITE YOUR CODE HERE
+model <- lm(log_budget ~ FirstActorMale, data = movies6)
+summary(model)
+
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The coefficient for β₁ is 0.30 and its p-value is 0.046 which is below 0,05 so it’s significantly different from zero 
+
+This means movies with a male first actor have a higher budget on average, about 34% higher than movies with a female first actor.
+
+This matches the plot in 2a, where the male average was higher than the female average. 
 
 *step c*
 
